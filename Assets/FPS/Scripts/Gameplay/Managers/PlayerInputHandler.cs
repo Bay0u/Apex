@@ -84,6 +84,16 @@ namespace Unity.FPS.Gameplay
             return false;
         }
 
+        public bool GetAbilityInputDown()
+        {
+            if (CanProcessInput())
+            {
+                return Input.GetButtonDown(GameConstants.k_ButtonNameAbility);
+            }
+
+            return false;
+        }
+
         public bool GetJumpInputHeld()
         {
             if (CanProcessInput())

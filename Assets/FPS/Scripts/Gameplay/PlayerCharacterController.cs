@@ -1,4 +1,5 @@
-﻿using Unity.FPS.Game;
+﻿using System;
+using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -119,6 +120,8 @@ namespace Unity.FPS.Gameplay
 
         private bool canDouble = false;
         private int character = 2;
+        private int abilityMeter = 0;
+
         Health m_Health;
         PlayerInputHandler m_InputHandler;
         CharacterController m_Controller;
@@ -131,6 +134,8 @@ namespace Unity.FPS.Gameplay
         float m_CameraVerticalAngle = 0f;
         float m_FootstepDistanceCounter;
         float m_TargetCharacterHeight;
+
+
 
         const float k_JumpGroundingPreventionTime = 0.2f;
         const float k_GroundCheckDistanceInAir = 0.07f;
@@ -172,8 +177,26 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(true);
         }
 
+        float lastTimeAbilityMeterUpdated = 0.0f;
+
+        private void UpdateAbilityMeter()
+        {
+
+            
+            if (Time.time - lastTimeAbilityMeterUpdated >= 1.0f)
+            {
+                lastTimeAbilityMeterUpdated = Time.time;
+                abilityMeter = Math.Min(abilityMeter+5, 100);
+            }
+        }
+
         void Update()
         {
+
+    
+             UpdateAbilityMeter();
+
+
             // check for Y kill
             if (!IsDead && transform.position.y < KillHeight)
             {
@@ -214,8 +237,27 @@ namespace Unity.FPS.Gameplay
             }
 
 
-            
-            
+            // Ability
+            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
+            {
+                abilityMeter = 0;
+                //print("Ultimate power activated");
+                //if (character == 0)
+                //{
+                //    Ability0();
+                //}
+                //if (character == 1)
+                //{
+                //    Ability1();
+                //}
+                //if (character == 2)
+                //{
+                //    Ability2();
+                //}
+                print("Done ability");
+            }
+
+
 
             UpdateCharacterHeight(false);
 
