@@ -119,7 +119,7 @@ namespace Unity.FPS.Gameplay
         }
 
         private bool canDouble = false;
-        private int character = 2;
+        private int character = 0;
         private int abilityMeter = 0;
 
         Health m_Health;
@@ -178,7 +178,7 @@ namespace Unity.FPS.Gameplay
         }
 
         float lastTimeAbilityMeterUpdated = 0.0f;
-
+        public GameObject teleProjectile;
         private void UpdateAbilityMeter()
         {
 
@@ -238,14 +238,13 @@ namespace Unity.FPS.Gameplay
 
 
             // Ability
-            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
+            if (m_InputHandler.GetAbilityInputDown() && abilityMeter <= 100)
             {
                 abilityMeter = 0;
-                //print("Ultimate power activated");
-                //if (character == 0)
-                //{
-                //    Ability0();
-                //}
+                if (character == 0)
+                {
+                    Ability0();
+                }
                 //if (character == 1)
                 //{
                 //    Ability1();
@@ -264,6 +263,26 @@ namespace Unity.FPS.Gameplay
             HandleCharacterMovement();
         }
 
+        private void Ability0()
+        {
+            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            Vector3 teleportDestination;
+            if (Physics.Raycast(ray, out hit))
+
+                teleportDestination = hit.point;
+            else
+                teleportDestination = ray.GetPoint(1000);
+
+            InstantiateProjectile(teleportDestination);
+        }
+
+        void InstantiateProjectile(Vector3 dest)
+        {
+            Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward  - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward)*0.35f;
+            var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
+            projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
+        }
         void OnDie()
         {
             IsDead = true;
