@@ -238,7 +238,7 @@ namespace Unity.FPS.Gameplay
 
 
             // Ability
-            if (m_InputHandler.GetAbilityInputDown() && abilityMeter <= 100)
+            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
             {
                 abilityMeter = 0;
                 if (character == 0)
@@ -269,8 +269,11 @@ namespace Unity.FPS.Gameplay
             RaycastHit hit;
             Vector3 teleportDestination;
             if (Physics.Raycast(ray, out hit))
-
+            {
+                Debug.DrawRay(PlayerCamera.transform.position, PlayerCamera.transform.forward * hit.distance, Color.blue);
                 teleportDestination = hit.point;
+            }
+                
             else
                 teleportDestination = ray.GetPoint(1000);
 
@@ -279,6 +282,7 @@ namespace Unity.FPS.Gameplay
 
         void InstantiateProjectile(Vector3 dest)
         {
+            print(dest);
             Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward  - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward)*0.35f;
             var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
             projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;

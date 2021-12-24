@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
 
     private void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
         {
-            player = GameObject.FindGameObjectWithTag("Player");
             print(player.transform.position.x);
-            player.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+            // print(gameObject.transform.position.x);
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = gameObject.transform.position;
+            player.GetComponent<CharacterController>().enabled = true;
             Destroy(gameObject);
-
         }
     }
 }
