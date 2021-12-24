@@ -124,7 +124,12 @@ namespace Unity.FPS.Gameplay
 
             SwitchWeapon(true);
         }
-
+        
+        public void justShoot()
+        {
+            WeaponController activeWeapon = GetActiveWeapon();
+            activeWeapon.HandleShoot();
+        }
         void Update()
         {
             // shoot handling

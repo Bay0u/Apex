@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -118,9 +120,14 @@ namespace Unity.FPS.Gameplay
             }
         }
 
+        private bool abilityMode = false;
         private bool canDouble = false;
-        private int character = 0;
+        private int character = 2;
         private int abilityMeter = 0;
+  
+        float lastTimeAbilityMeterUpdated = 0.0f;
+        public GameObject teleProjectile;
+
 
         Health m_Health;
         PlayerInputHandler m_InputHandler;
@@ -177,18 +184,8 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(true);
         }
 
-        float lastTimeAbilityMeterUpdated = 0.0f;
-        public GameObject teleProjectile;
-        private void UpdateAbilityMeter()
-        {
 
-            
-            if (Time.time - lastTimeAbilityMeterUpdated >= 1.0f)
-            {
-                lastTimeAbilityMeterUpdated = Time.time;
-                abilityMeter = Math.Min(abilityMeter+5, 100);
-            }
-        }
+        
 
         void Update()
         {
@@ -249,10 +246,10 @@ namespace Unity.FPS.Gameplay
                 //{
                 //    Ability1();
                 //}
-                //if (character == 2)
-                //{
-                //    Ability2();
-                //}
+                if (character == 2)
+                {
+                    Ability2();
+                }
                 print("Done ability");
             }
 
@@ -280,6 +277,38 @@ namespace Unity.FPS.Gameplay
             InstantiateProjectile(teleportDestination);
         }
 
+        private void Ability2()
+        {
+            StartCoroutine(ReloadRoutine());
+        }
+        IEnumerator ReloadRoutine()
+        {
+            Quaternion playerOldLook = transform.rotation;
+            Quaternion cameraOldLook = PlayerCamera.transform.rotation;
+            abilityMode = true;
+
+            Collider[] hitColliders = Physics.OverlapSphere(PlayerCamera.transform.position, 10);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.CompareTag("Enemy"))
+                {
+
+                    // We should fire at this Enemy without changing the Ammo
+                    transform.LookAt(hitCollider.gameObject.transform.position);
+                    PlayerCamera.transform.LookAt(hitCollider.gameObject.transform.position + Vector3.up * 1.5f);
+
+                    m_WeaponsManager.justShoot();
+
+                    print("Hacker Boy!");
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+
+            transform.rotation = playerOldLook;
+            PlayerCamera.transform.rotation = cameraOldLook;
+            abilityMode = false;
+        }
+
         void InstantiateProjectile(Vector3 dest)
         {
             print(dest);
@@ -287,6 +316,24 @@ namespace Unity.FPS.Gameplay
             var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
             projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
         }
+
+        
+        private void UpdateAbilityMeter()
+        {
+
+            abilityMeter = 100;
+            if (Time.time - lastTimeAbilityMeterUpdated >= 1.0f)
+            {
+                lastTimeAbilityMeterUpdated = Time.time;
+                abilityMeter = Math.Min(abilityMeter + 5, 100);
+            }
+        }
+        public static List<GameObject> ObjectsInRange = new List<GameObject>();
+
+        
+        
+
+
         void OnDie()
         {
             IsDead = true;
@@ -341,7 +388,8 @@ namespace Unity.FPS.Gameplay
             // horizontal character rotation
             {
                 // rotate the transform with the input speed around its local Y axis
-                transform.Rotate(
+                if (character != 2 || !abilityMode)
+                    transform.Rotate(
                     new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier),
                         0f), Space.Self);
             }
@@ -355,7 +403,8 @@ namespace Unity.FPS.Gameplay
                 m_CameraVerticalAngle = Mathf.Clamp(m_CameraVerticalAngle, -89f, 89f);
 
                 // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
-                PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
+                if(character != 2 || !abilityMode)
+                    PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
             }
 
             // character movement handling

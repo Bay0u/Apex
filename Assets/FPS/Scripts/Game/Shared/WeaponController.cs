@@ -24,7 +24,7 @@ namespace Unity.FPS.Game
         [Tooltip("The color of the crosshair image")]
         public Color CrosshairColor;
     }
-
+    
     [RequireComponent(typeof(AudioSource))]
     public class WeaponController : MonoBehaviour
     {
@@ -437,7 +437,7 @@ namespace Unity.FPS.Game
             return false;
         }
 
-        void HandleShoot()
+        public void HandleShoot()
         {
             int bulletsPerShotFinal = ShootType == WeaponShootType.Charge
                 ? Mathf.CeilToInt(CurrentCharge * BulletsPerShot)
