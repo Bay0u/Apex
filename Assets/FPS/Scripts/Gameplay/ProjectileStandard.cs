@@ -239,9 +239,9 @@ namespace Unity.FPS.Gameplay
                 if (this.CompareTag("Flame"))
                 {
                     Point = point;
-                    StartCoroutine(ExampleCoroutine(2000));
-                    StartCoroutine(ExampleCoroutine(4000));
-                    StartCoroutine(ExampleCoroutine(6000));
+                    StartCoroutine(ExampleCoroutine(2));
+                    StartCoroutine(ExampleCoroutine(4));
+                    StartCoroutine(ExampleCoroutine(6));
 
 
                 }
