@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Unity.FPS.Game;
 using UnityEngine;
+using System.Collections;
 
 namespace Unity.FPS.Gameplay
 {
@@ -219,15 +220,37 @@ namespace Unity.FPS.Gameplay
 
             return true;
         }
+        Vector3 Point;
+        IEnumerator ExampleCoroutine(int n)
+        {
+            Debug.Log("d5lt el timer");
 
+            AreaOfDamage.InflictDamageInArea(Damage, Point, HittableLayers, k_TriggerInteraction,
+                        m_ProjectileBase.Owner);
+            //yield on a new YieldInstruction that waits for 5 seconds.
+            yield return new WaitForSeconds(n);
+
+        }
         void OnHit(Vector3 point, Vector3 normal, Collider collider)
         {
             // damage
             if (AreaOfDamage)
             {
-                // area damage
-                AreaOfDamage.InflictDamageInArea(Damage, point, HittableLayers, k_TriggerInteraction,
-                    m_ProjectileBase.Owner);
+                if (this.CompareTag("Flame"))
+                {
+                    Point = point;
+                    StartCoroutine(ExampleCoroutine(2000));
+                    StartCoroutine(ExampleCoroutine(4000));
+                    StartCoroutine(ExampleCoroutine(6000));
+
+
+                }
+                else
+                {
+                    // area damage
+                    AreaOfDamage.InflictDamageInArea(Damage, point, HittableLayers, k_TriggerInteraction,
+                        m_ProjectileBase.Owner);
+                }
             }
             else
             {
