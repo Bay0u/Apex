@@ -1,4 +1,5 @@
-﻿using Unity.FPS.Game;
+﻿using System;
+using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -117,6 +118,10 @@ namespace Unity.FPS.Gameplay
             }
         }
 
+        private bool canDouble = false;
+        private int character = 2;
+        private int abilityMeter = 0;
+
         Health m_Health;
         PlayerInputHandler m_InputHandler;
         CharacterController m_Controller;
@@ -129,6 +134,8 @@ namespace Unity.FPS.Gameplay
         float m_CameraVerticalAngle = 0f;
         float m_FootstepDistanceCounter;
         float m_TargetCharacterHeight;
+
+
 
         const float k_JumpGroundingPreventionTime = 0.2f;
         const float k_GroundCheckDistanceInAir = 0.07f;
@@ -170,8 +177,26 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(true);
         }
 
+        float lastTimeAbilityMeterUpdated = 0.0f;
+
+        private void UpdateAbilityMeter()
+        {
+
+            
+            if (Time.time - lastTimeAbilityMeterUpdated >= 1.0f)
+            {
+                lastTimeAbilityMeterUpdated = Time.time;
+                abilityMeter = Math.Min(abilityMeter+5, 100);
+            }
+        }
+
         void Update()
         {
+
+    
+             UpdateAbilityMeter();
+
+
             // check for Y kill
             if (!IsDead && transform.position.y < KillHeight)
             {
@@ -211,6 +236,29 @@ namespace Unity.FPS.Gameplay
                 SetCrouchingState(!IsCrouching, false);
             }
 
+
+            // Ability
+            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
+            {
+                abilityMeter = 0;
+                //print("Ultimate power activated");
+                //if (character == 0)
+                //{
+                //    Ability0();
+                //}
+                //if (character == 1)
+                //{
+                //    Ability1();
+                //}
+                //if (character == 2)
+                //{
+                //    Ability2();
+                //}
+                print("Done ability");
+            }
+
+
+
             UpdateCharacterHeight(false);
 
             HandleCharacterMovement();
@@ -237,7 +285,7 @@ namespace Unity.FPS.Gameplay
             m_GroundNormal = Vector3.up;
 
             // only try to detect ground if it's been a short amount of time since last jump; otherwise we may snap to the ground instantly after we try jumping
-            if (Time.time >= m_LastTimeJumped + k_JumpGroundingPreventionTime)
+            if (Time.time >= m_LastTimeJumped + k_JumpGroundingPreventionTime) // to be understood
             {
                 // if we're grounded, collect info about the ground normal with a downward capsule cast representing our character capsule
                 if (Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(m_Controller.height),
@@ -253,6 +301,7 @@ namespace Unity.FPS.Gameplay
                         IsNormalUnderSlopeLimit(m_GroundNormal))
                     {
                         IsGrounded = true;
+                        canDouble = false;
 
                         // handle snapping to the ground
                         if (hit.distance > m_Controller.skinWidth)
@@ -315,8 +364,10 @@ namespace Unity.FPS.Gameplay
                         MovementSharpnessOnGround * Time.deltaTime);
 
                     // jumping
+
                     if (IsGrounded && m_InputHandler.GetJumpInputDown())
                     {
+                        canDouble = true;
                         // force the crouch state to false
                         if (SetCrouchingState(false, false))
                         {
@@ -354,6 +405,25 @@ namespace Unity.FPS.Gameplay
                 // handle air movement
                 else
                 {
+
+                    if (character == 2 && canDouble)
+                    {
+                        print("CanDouble Jump");
+                        if(m_InputHandler.GetJumpInputDown())
+                        {
+                            canDouble = false;
+                            // start by canceling out the vertical component of our velocity
+                            CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
+
+                            // then, add the jumpSpeed value upwards
+                            CharacterVelocity += Vector3.up * JumpForce;
+
+                            // play sound
+                            AudioSource.PlayOneShot(JumpSfx);
+                        }
+                    }
+                    
+
                     // add air acceleration
                     CharacterVelocity += worldspaceMoveInput * AccelerationSpeedInAir * Time.deltaTime;
 
