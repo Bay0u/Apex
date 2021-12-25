@@ -12,10 +12,10 @@ namespace Unity.FPS.Gameplay
     {
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
-
+        public GameObject shield;
         [Tooltip("Audio source for footsteps, jump, etc...")]
         public AudioSource AudioSource;
-
+        public static bool isAbility1;
         [Header("General")] [Tooltip("Force applied downward when in the air")]
         public float GravityDownForce = 20f;
 
@@ -122,7 +122,7 @@ namespace Unity.FPS.Gameplay
 
         private bool abilityMode = false;
         private bool canDouble = false;
-        private int character = 1;
+        private int character = 2;
         private int abilityMeter = 0;
   
         float lastTimeAbilityMeterUpdated = 0.0f;
@@ -215,8 +215,11 @@ namespace Unity.FPS.Gameplay
                 if (RecievesFallDamage && fallSpeedRatio > 0f)
                 {
                     float dmgFromFall = Mathf.Lerp(FallDamageAtMinSpeed, FallDamageAtMaxSpeed, fallSpeedRatio);
+                   
                     m_Health.TakeDamage(dmgFromFall, null);
 
+                    
+					
                     // fall damage SFX
                     AudioSource.PlayOneShot(FallDamageSfx);
                 }
@@ -233,8 +236,7 @@ namespace Unity.FPS.Gameplay
                 SetCrouchingState(!IsCrouching, false);
             }
 
-
-            // Ability
+            // Ability    
             if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
             {
                 abilityMeter = 0;
@@ -242,15 +244,15 @@ namespace Unity.FPS.Gameplay
                 {
                     Ability0();
                 }
-                //if (character == 1)
-                //{
-                //    Ability1();
-                //}
+                if (character == 1)
+                {
+                   Ability1();
+                }
                 if (character == 2)
                 {
                     Ability2();
                 }
-                print("Done ability");
+                // print("Done ability");
             }
 
 
@@ -276,15 +278,34 @@ namespace Unity.FPS.Gameplay
 
             InstantiateProjectile(teleportDestination);
         }
-        void InstantiateProjectile(Vector3 dest)
+        /////// flag
+		private void Ability1()
         {
-            print(dest);
-            Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward) * 0.35f;
-            var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
-            projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
+            
 
-            Vector3 vec = new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), UnityEngine.Random.Range(-1.5f, 1.5f), 0);
-            iTween.PunchPosition(projectileObject, vec, UnityEngine.Random.Range(0.5f,2f));
+
+            StartCoroutine(shieldRoutine());
+
+
+        // add Components
+        // Armor.AddComponent<Rigidbody>();
+        // Armor.AddComponent<MeshFilter>();
+        // Armor.AddComponent<BoxCollider>();
+        // Armor.AddComponent<MeshRenderer>();
+
+        // sets the obj's parent to the obj that the script is applied to
+        // Armor.transform.SetParent(this.transform);
+
+        }
+
+          IEnumerator shieldRoutine()
+        {
+         shield.SetActive(true);
+         m_Health.SetInv(true);
+         yield return new WaitForSeconds(10.0f);
+         shield.SetActive(false);
+         m_Health.SetInv(false);
+
 
 
         }
@@ -292,6 +313,7 @@ namespace Unity.FPS.Gameplay
         {
             StartCoroutine(ReloadRoutine());
         }
+
         IEnumerator ReloadRoutine()
         {
             Quaternion playerOldLook = transform.rotation;
@@ -318,6 +340,14 @@ namespace Unity.FPS.Gameplay
             transform.rotation = playerOldLook;
             PlayerCamera.transform.rotation = cameraOldLook;
             abilityMode = false;
+        }
+
+        void InstantiateProjectile(Vector3 dest)
+        {
+            print(dest);
+            Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward  - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward)*0.35f;
+            var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
+            projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
         }
 
         
@@ -418,7 +448,7 @@ namespace Unity.FPS.Gameplay
                     isSprinting = SetCrouchingState(false, false);
                 }
 
-                float speedModifier = isSprinting&&character==1 ? SprintSpeedModifier *2: isSprinting? SprintSpeedModifier : 1f;
+                float speedModifier = isSprinting ? SprintSpeedModifier : 1f;
 
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());

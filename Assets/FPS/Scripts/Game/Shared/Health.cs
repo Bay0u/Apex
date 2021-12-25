@@ -22,7 +22,10 @@ namespace Unity.FPS.Game
         public bool IsCritical() => GetRatio() <= CriticalHealthRatio;
 
         bool m_IsDead;
-
+        public void SetInv(bool inv)
+        {
+         Invincible=inv;
+        }
         void Start()
         {
             CurrentHealth = MaxHealth;
