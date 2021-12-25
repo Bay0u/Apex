@@ -421,7 +421,7 @@ namespace Unity.FPS.Game
 
             return false;
         }
-
+        
         bool TryReleaseCharge()
         {
             if (IsCharging)

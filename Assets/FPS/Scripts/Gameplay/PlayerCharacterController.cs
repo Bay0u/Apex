@@ -276,7 +276,18 @@ namespace Unity.FPS.Gameplay
 
             InstantiateProjectile(teleportDestination);
         }
+        void InstantiateProjectile(Vector3 dest)
+        {
+            print(dest);
+            Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward) * 0.35f;
+            var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
+            projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
 
+            Vector3 vec = new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), UnityEngine.Random.Range(-1.5f, 1.5f), 0);
+            iTween.PunchPosition(projectileObject, vec, UnityEngine.Random.Range(0.5f,2f));
+
+
+        }
         private void Ability2()
         {
             StartCoroutine(ReloadRoutine());
@@ -307,14 +318,6 @@ namespace Unity.FPS.Gameplay
             transform.rotation = playerOldLook;
             PlayerCamera.transform.rotation = cameraOldLook;
             abilityMode = false;
-        }
-
-        void InstantiateProjectile(Vector3 dest)
-        {
-            print(dest);
-            Vector3 firePoint = PlayerCamera.transform.position + PlayerCamera.transform.forward  - Vector3.Cross(PlayerCamera.transform.up, PlayerCamera.transform.forward)*0.35f;
-            var projectileObject = Instantiate(teleProjectile, firePoint, Quaternion.identity) as GameObject;
-            projectileObject.GetComponent<Rigidbody>().velocity = (dest - firePoint).normalized * 30;
         }
 
         
