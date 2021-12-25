@@ -35,10 +35,7 @@ namespace Unity.FPS.Game
                 }
 
                 // potentially reduce damages if inflicted by self
-                if (Health.gameObject == damageSource)
-                {
-                    totalDamage *= SensibilityToSelfdamage;
-                }
+               
 
                 // apply the damages
                 Health.TakeDamage(totalDamage, damageSource);

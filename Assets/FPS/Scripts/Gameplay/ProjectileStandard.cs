@@ -59,7 +59,9 @@ namespace Unity.FPS.Gameplay
         ProjectileBase m_ProjectileBase;
         Vector3 m_LastRootPosition;
         Vector3 m_Velocity;
+        Vector3 hitPoint;
         bool m_HasTrajectoryOverride;
+        bool enterupdate = false;
         float m_ShootTime;
         Vector3 m_TrajectoryCorrectionVector;
         Vector3 m_ConsumedTrajectoryCorrectionVector;
@@ -125,6 +127,14 @@ namespace Unity.FPS.Gameplay
         void Update()
         {
             // Move
+
+            if (enterupdate)
+            {
+                this.gameObject.transform.position = hitPoint;
+
+            }
+
+            else { 
             transform.position += m_Velocity * Time.deltaTime;
             if (InheritWeaponVelocity)
             {
@@ -196,6 +206,8 @@ namespace Unity.FPS.Gameplay
             }
 
             m_LastRootPosition = Root.position;
+
+        }
         }
 
         bool IsHitValid(RaycastHit hit)
@@ -221,40 +233,31 @@ namespace Unity.FPS.Gameplay
             return true;
         }
         Vector3 Point;
-        IEnumerator ExampleCoroutine(int n)
-        {
-            Debug.Log("d5lt el timer");
-
-            AreaOfDamage.InflictDamageInArea(Damage, Point, HittableLayers, k_TriggerInteraction,
-                        m_ProjectileBase.Owner);
-            //yield on a new YieldInstruction that waits for 5 seconds.
-            yield return new WaitForSeconds(n);
-
-        }
+      
         void OnHit(Vector3 point, Vector3 normal, Collider collider)
         {
             // damage
+            hitPoint = point;
             if (AreaOfDamage)
             {
                 if (this.CompareTag("Flame"))
                 {
-                    Point = point;
-                    StartCoroutine(ExampleCoroutine(2));
-                    StartCoroutine(ExampleCoroutine(4));
-                    StartCoroutine(ExampleCoroutine(6));
-
-
+                    enterupdate = true;
+                    StartCoroutine(InflictFlameAreaDamageENUM(AreaOfDamage, point));
                 }
+
                 else
                 {
-                    // area damage
-                    AreaOfDamage.InflictDamageInArea(Damage, point, HittableLayers, k_TriggerInteraction,
-                        m_ProjectileBase.Owner);
-                }
+                    Destroy(this.gameObject);
+
+                    AreaOfDamage.InflictDamageInArea(Damage, point, HittableLayers, k_TriggerInteraction, m_ProjectileBase.Owner);
+                }         
             }
             else
             {
                 // point damage
+
+                Destroy(this.gameObject);
                 Damageable damageable = collider.GetComponent<Damageable>();
                 if (damageable)
                 {
@@ -267,6 +270,8 @@ namespace Unity.FPS.Gameplay
             {
                 GameObject impactVfxInstance = Instantiate(ImpactVfx, point + (normal * ImpactVfxSpawnOffset),
                     Quaternion.LookRotation(normal));
+
+
                 if (ImpactVfxLifetime > 0)
                 {
                     Destroy(impactVfxInstance.gameObject, ImpactVfxLifetime);
@@ -280,7 +285,8 @@ namespace Unity.FPS.Gameplay
             }
 
             // Self Destruct
-            Destroy(this.gameObject);
+            
+
         }
 
         void OnDrawGizmosSelected()
@@ -288,5 +294,31 @@ namespace Unity.FPS.Gameplay
             Gizmos.color = RadiusColor;
             Gizmos.DrawSphere(transform.position, Radius);
         }
+
+
+        private IEnumerator InflictFlameAreaDamageENUM(DamageArea AreaOfDamage, Vector3 point)
+        {
+            yield return StartCoroutine(InflictDamageInArea(AreaOfDamage,point));
+            yield return StartCoroutine(InflictDamageInArea(AreaOfDamage,point));
+            yield return StartCoroutine(InflictDamageInArea(AreaOfDamage,point));
+            yield return StartCoroutine(InflictDamageInArea(AreaOfDamage,point));
+            yield return StartCoroutine(InflictDamageInArea(AreaOfDamage,point));
+            Destroy(this.gameObject);
+
+        }
+
+
+        private IEnumerator InflictDamageInArea(DamageArea AreaOfDamage,Vector3 point)
+        {
+
+            Debug.Log("Point"+ point);
+            Debug.Log("Damage" + Damage);
+            AreaOfDamage.InflictDamageInArea(Damage, point, HittableLayers, k_TriggerInteraction, m_ProjectileBase.Owner);
+            yield return new WaitForSeconds(1);
+
+
+
+        }
+
     }
 }
