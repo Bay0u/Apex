@@ -122,7 +122,7 @@ namespace Unity.FPS.Gameplay
 
         private bool abilityMode = false;
         private bool canDouble = false;
-        private int character = 2;
+        private int character = 1;
         private int abilityMeter = 0;
   
         float lastTimeAbilityMeterUpdated = 0.0f;
@@ -418,7 +418,7 @@ namespace Unity.FPS.Gameplay
                     isSprinting = SetCrouchingState(false, false);
                 }
 
-                float speedModifier = isSprinting ? SprintSpeedModifier : 1f;
+                float speedModifier = isSprinting&&character==1 ? SprintSpeedModifier *2: isSprinting? SprintSpeedModifier : 1f;
 
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());
