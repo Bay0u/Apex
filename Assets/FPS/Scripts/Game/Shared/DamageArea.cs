@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Unity.FPS.Game
 {
@@ -11,15 +13,27 @@ namespace Unity.FPS.Game
         [Tooltip("Damage multiplier over distance for area of effect")]
         public AnimationCurve DamageRatioOverDistance;
 
-        [Header("Debug")] [Tooltip("Color of the area of effect radius")]
+        [Header("Debug")]
+        [Tooltip("Color of the area of effect radius")]
         public Color AreaOfEffectColor = Color.red * 0.5f;
 
-        public void InflictDamageInArea(float damage, Vector3 center, LayerMask layers,
+
+     
+
+
+
+
+        public void  InflictDamageInArea(float damage, Vector3 center, LayerMask layers,
             QueryTriggerInteraction interaction, GameObject owner)
         {
+
+
             Dictionary<Health, Damageable> uniqueDamagedHealths = new Dictionary<Health, Damageable>();
 
             // Create a collection of unique health components that would be damaged in the area of effect (in order to avoid damaging a same entity multiple times)
+
+
+
             Collider[] affectedColliders = Physics.OverlapSphere(center, AreaOfEffectDistance, layers, interaction);
             foreach (var coll in affectedColliders)
             {
@@ -35,12 +49,15 @@ namespace Unity.FPS.Game
             }
 
             // Apply damages with distance falloff
+
             foreach (Damageable uniqueDamageable in uniqueDamagedHealths.Values)
             {
                 float distance = Vector3.Distance(uniqueDamageable.transform.position, transform.position);
-                uniqueDamageable.InflictDamage(
-                    damage * DamageRatioOverDistance.Evaluate(distance / AreaOfEffectDistance), true, owner);
+                uniqueDamageable.InflictDamage(damage * DamageRatioOverDistance.Evaluate(distance / AreaOfEffectDistance), true, owner);
             }
+            
+            
+
         }
 
         void OnDrawGizmosSelected()
@@ -48,5 +65,11 @@ namespace Unity.FPS.Game
             Gizmos.color = AreaOfEffectColor;
             Gizmos.DrawSphere(transform.position, AreaOfEffectDistance);
         }
+
+      
+
+
     }
+
+
 }
