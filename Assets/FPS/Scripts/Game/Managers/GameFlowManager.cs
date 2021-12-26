@@ -61,7 +61,16 @@ namespace Unity.FPS.Game
                 }
             }
         }
+        public void goToMenu()
+        {
+            SceneManager.LoadScene("IntroMenu");
 
+        }
+        public void StartMainScene()
+        {
+            SceneManager.LoadScene("MainScene");
+            Time.timeScale = 1f;
+        }
         void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);
         void OnPlayerDeath(PlayerDeathEvent evt) => EndGame(false);
 
