@@ -165,8 +165,8 @@ namespace Unity.FPS.Game
 
         void Awake()
         {
-            m_CurrentAmmo = MaxAmmo;
-            m_CarriedPhysicalBullets = HasPhysicalBullets ? ClipSize : 0;
+            m_CurrentAmmo = 0;
+            m_CarriedPhysicalBullets = 0;
             m_LastMuzzlePosition = WeaponMuzzle.position;
 
             m_ShootAudioSource = GetComponent<AudioSource>();
@@ -196,7 +196,7 @@ namespace Unity.FPS.Game
             }
         }
 
-        public void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Max(m_CarriedPhysicalBullets + count, MaxAmmo);
+        public void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Min(m_CarriedPhysicalBullets + count, MaxAmmo);
 
         void ShootShell()
         {
@@ -219,7 +219,10 @@ namespace Unity.FPS.Game
         {
             if (m_CarriedPhysicalBullets > 0)
             {
+                float oldAmmo = m_CurrentAmmo;
                 m_CurrentAmmo = Mathf.Min(m_CarriedPhysicalBullets, ClipSize);
+                float takenAmmo = m_CurrentAmmo - oldAmmo ;
+                m_CarriedPhysicalBullets = (int) (m_CarriedPhysicalBullets- takenAmmo);
             }
 
             IsReloading = false;
@@ -229,6 +232,7 @@ namespace Unity.FPS.Game
         {
             if (m_CurrentAmmo < m_CarriedPhysicalBullets)
             {
+                Reload();
                 GetComponent<Animator>().SetTrigger("Reload");
                 IsReloading = true;
             }
@@ -266,6 +270,7 @@ namespace Unity.FPS.Game
 
             if (MaxAmmo == Mathf.Infinity)
             {
+       
                 CurrentAmmoRatio = 1f;
             }
             else

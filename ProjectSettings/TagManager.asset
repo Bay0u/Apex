@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Flame
   - Enemy
+  - Primay_Ammo
+  - Secondary_Ammo
   layers:
   - Default
   - TransparentFX

@@ -47,11 +47,9 @@ namespace Unity.FPS.Gameplay
             // Handle rotating
             transform.Rotate(Vector3.up, RotatingSpeed * Time.deltaTime, Space.Self);
         }
-
-        void OnTriggerEnter(Collider other)
+        void OnTriggerStay(Collider other)
         {
             PlayerCharacterController pickingPlayer = other.GetComponent<PlayerCharacterController>();
-
             if (pickingPlayer != null)
             {
                 OnPicked(pickingPlayer);
