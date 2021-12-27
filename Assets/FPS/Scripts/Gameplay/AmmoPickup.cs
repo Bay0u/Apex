@@ -16,11 +16,9 @@ namespace Unity.FPS.Gameplay
             PlayerWeaponsManager playerWeaponsManager = byPlayer.GetComponent<PlayerWeaponsManager>();
             if (playerWeaponsManager)
             {
-                Debug.Log("");
                 WeaponController weapon = playerWeaponsManager.HasWeapon(Weapon);
                 if (weapon != null && Input.GetButton(GameConstants.k_ButtonPickup))
                 {
-                    Debug.Log("d5lt hena");
                     weapon.AddCarriablePhysicalBullets(BulletCount);
 
                     AmmoPickupEvent evt = Events.AmmoPickupEvent;

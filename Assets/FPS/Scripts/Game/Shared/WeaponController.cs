@@ -275,7 +275,7 @@ namespace Unity.FPS.Game
             }
             else
             {
-                CurrentAmmoRatio = m_CurrentAmmo / MaxAmmo;
+                CurrentAmmoRatio = m_CurrentAmmo / ClipSize;
             }
         }
 

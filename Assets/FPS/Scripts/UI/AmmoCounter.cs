@@ -67,7 +67,7 @@ namespace Unity.FPS.UI
             WeaponCounterIndex = weaponIndex;
             WeaponImage.sprite = weapon.WeaponIcon;
             if (!weapon.HasPhysicalBullets)
-                BulletCounter.transform.parent.gameObject.SetActive(false);
+                BulletCounter.transform.parent.gameObject.SetActive(true);
             else
                 BulletCounter.text = weapon.GetCarriedPhysicalBullets().ToString();
 
