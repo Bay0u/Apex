@@ -45,6 +45,8 @@ namespace Unity.FPS.UI
 
         public int WeaponCounterIndex { get; set; }
 
+        public TextMeshProUGUI weaponName;
+
         PlayerWeaponsManager m_PlayerWeaponsManager;
         WeaponController m_Weapon;
 
@@ -66,6 +68,7 @@ namespace Unity.FPS.UI
             m_Weapon = weapon;
             WeaponCounterIndex = weaponIndex;
             WeaponImage.sprite = weapon.WeaponIcon;
+            weaponName.text = weapon.WeaponName;
             if (!weapon.HasPhysicalBullets)
                 BulletCounter.transform.parent.gameObject.SetActive(true);
             else
