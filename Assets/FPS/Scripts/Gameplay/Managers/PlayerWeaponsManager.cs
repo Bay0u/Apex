@@ -86,7 +86,7 @@ namespace Unity.FPS.Gameplay
         public UnityAction<WeaponController, int> OnAddedWeapon;
         public UnityAction<WeaponController, int> OnRemovedWeapon;
 
-        public WeaponController[] m_WeaponSlots = new WeaponController[9]; // 9 available weapon slots
+        public WeaponController[] m_WeaponSlots = new WeaponController[2]; // 9 available weapon slots
         PlayerInputHandler m_InputHandler;
         PlayerCharacterController m_PlayerCharacterController;
         float m_WeaponBobFactor;
@@ -522,6 +522,11 @@ namespace Unity.FPS.Gameplay
                     if (i == ActiveWeaponIndex)
                     {
                         SwitchWeapon(true);
+                    }
+                    if (i == 0)
+                    {
+                        m_WeaponSlots[0] = m_WeaponSlots[1];
+                        m_WeaponSlots[1] = null;
                     }
 
                     return true;

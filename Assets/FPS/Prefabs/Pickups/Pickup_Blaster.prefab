@@ -30,7 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 167235208980905173}
+  - {fileID: 6035350765361728288}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,43 +81,12 @@ MonoBehaviour:
   PickupSfx: {fileID: 8300000, guid: 6f3e0904bbbace745bdef08cdbcdfec0, type: 3}
   PickupVfxPrefab: {fileID: 0}
   WeaponPrefab: {fileID: 4512789211320788747}
---- !u!1 &7696458092355651969
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 167235208980905173}
-  m_Layer: 0
-  m_Name: Mesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &167235208980905173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696458092355651969}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6035350765361728288}
-  m_Father: {fileID: 5391986374566301942}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5558386449605054320
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 167235208980905173}
+    m_TransformParent: {fileID: 5391986374566301942}
     m_Modifications:
     - target: {fileID: 861279283957842033, guid: b318fabc73446b746a1005cede0c4ceb,
         type: 3}
@@ -157,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 2225486910712267856, guid: b318fabc73446b746a1005cede0c4ceb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3670001
+      value: 0.1329999
       objectReference: {fileID: 0}
     - target: {fileID: 2225486910712267856, guid: b318fabc73446b746a1005cede0c4ceb,
         type: 3}

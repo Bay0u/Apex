@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Primay_Ammo
   - Secondary_Ammo
+  - Primary_Weapon
+  - Secondary_Weapon
   layers:
   - Default
   - TransparentFX
