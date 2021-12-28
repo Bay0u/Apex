@@ -7,10 +7,10 @@ namespace Unity.FPS.Gameplay
     public class Pickup : MonoBehaviour
     {
         [Tooltip("Frequency at which the item will move up and down")]
-        public float VerticalBobFrequency = 1f;
+        public float VerticalBobFrequency = 0f;
 
         [Tooltip("Distance the item will move up and down")]
-        public float BobbingAmount = 1f;
+        public float BobbingAmount = 0f;
 
         [Tooltip("Rotation angle per second")] public float RotatingSpeed = 360f;
 

@@ -495,6 +495,7 @@ namespace Unity.FPS.Gameplay
             // Handle auto-switching to weapon if no weapons currently
             if (GetActiveWeapon() == null)
             {
+                Debug.Log("23ml switch wla fla7");
                 SwitchWeapon(true);
             }
 
@@ -519,15 +520,15 @@ namespace Unity.FPS.Gameplay
                     Destroy(weaponInstance.gameObject);
 
                     // Handle case of removing active weapon (switch to next weapon)
+                  
+
+
+
                     if (i == ActiveWeaponIndex)
                     {
                         SwitchWeapon(true);
                     }
-                    if (i == 0)
-                    {
-                        m_WeaponSlots[0] = m_WeaponSlots[1];
-                        m_WeaponSlots[1] = null;
-                    }
+                   
 
                     return true;
                 }

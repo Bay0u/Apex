@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bffb1311779ed346a19fef7c9fa65ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerticalBobFrequency: 1
-  BobbingAmount: 0.3
+  VerticalBobFrequency: 0
+  BobbingAmount: 0
   RotatingSpeed: 360
   PickupSfx: {fileID: 8300000, guid: 7b83d61917ac1224f942a0609b1221f2, type: 3}
   PickupVfxPrefab: {fileID: 0}
@@ -85,9 +85,6 @@ MonoBehaviour:
   pickupweapons:
   - {fileID: 7671270577186476446}
   - {fileID: 7671270577186476446, guid: a7fa348d53593bb42922672c6cf40651, type: 3}
-  - {fileID: 5391986374566301945, guid: fe0bc5bbccc19ef47a15b81c0abbb779, type: 3}
-  - {fileID: 5391986374566301945, guid: 66d579771ab0ab94a92b3411ba179621, type: 3}
-  - {fileID: 5391986374566301945, guid: b7005eb4709d82d4b9cdf2462b570387, type: 3}
 --- !u!1001 &6629848763452678633
 PrefabInstance:
   m_ObjectHideFlags: 0
