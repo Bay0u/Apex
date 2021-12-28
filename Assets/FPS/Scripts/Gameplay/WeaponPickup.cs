@@ -18,6 +18,7 @@ namespace Unity.FPS.Gameplay
                 if (t != transform)
                     t.gameObject.layer = 0;
             }
+
         }
 
         protected override void OnPicked(PlayerCharacterController byPlayer)
