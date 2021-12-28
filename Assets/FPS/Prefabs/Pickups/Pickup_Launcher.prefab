@@ -109,7 +109,7 @@ MonoBehaviour:
   VerticalBobFrequency: 1
   BobbingAmount: 0.3
   RotatingSpeed: 360
-  PickupSfx: {fileID: 8300000, guid: 6f3e0904bbbace745bdef08cdbcdfec0, type: 3}
+  PickupSfx: {fileID: 8300000, guid: 7b83d61917ac1224f942a0609b1221f2, type: 3}
   PickupVfxPrefab: {fileID: 0}
   WeaponPrefab: {fileID: 8323776800172828795, guid: 3439b4874b7b44e4eb2216314c46b85c,
     type: 3}
@@ -123,6 +123,11 @@ PrefabInstance:
     - target: {fileID: 925616046268229668, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
@@ -142,6 +147,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9488854
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.21411245
       objectReference: {fileID: 0}
@@ -154,16 +164,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.120336354
-      objectReference: {fileID: 0}
-    - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9488854
-      objectReference: {fileID: 0}
-    - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2225486910712267856, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}

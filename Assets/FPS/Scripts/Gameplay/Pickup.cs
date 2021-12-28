@@ -50,7 +50,7 @@ namespace Unity.FPS.Gameplay
         void OnTriggerStay(Collider other)
         {
             PlayerCharacterController pickingPlayer = other.GetComponent<PlayerCharacterController>();
-            if (pickingPlayer != null)
+            if (pickingPlayer != null && Input.GetButton(GameConstants.k_ButtonPickup))
             {
                 OnPicked(pickingPlayer);
 

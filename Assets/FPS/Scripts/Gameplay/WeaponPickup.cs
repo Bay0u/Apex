@@ -23,7 +23,7 @@ namespace Unity.FPS.Gameplay
         protected override void OnPicked(PlayerCharacterController byPlayer)
         {
             PlayerWeaponsManager playerWeaponsManager = byPlayer.GetComponent<PlayerWeaponsManager>();
-            if (playerWeaponsManager)
+            if (playerWeaponsManager && Input.GetButton(GameConstants.k_ButtonPickup))
             {
                 if (playerWeaponsManager.AddWeapon(WeaponPrefab))
                 {

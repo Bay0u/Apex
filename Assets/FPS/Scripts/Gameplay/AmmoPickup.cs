@@ -12,15 +12,13 @@ namespace Unity.FPS.Gameplay
         {
             PlayerWeaponsManager playerWeaponsManager = byPlayer.GetComponent<PlayerWeaponsManager>();
 
-            if (playerWeaponsManager)
+            if (playerWeaponsManager && playerWeaponsManager.m_WeaponSlots.Length!=0)
             {
-                WeaponController weapon1 = playerWeaponsManager.m_WeaponSlots[0];
-                WeaponController weapon2 = playerWeaponsManager.m_WeaponSlots[1];
                 if (this.gameObject.name == "PrimaryAmmo")
                 {
-                    if (weapon1.WeaponName == "Sniper" || weapon1.WeaponName == "Shotgun" || weapon1.WeaponName == "Blaster")
-                    {
-                        if (weapon1 != null && Input.GetButton(GameConstants.k_ButtonPickup))
+                    if (playerWeaponsManager.m_WeaponSlots[0] != null) {
+                        WeaponController weapon1 = playerWeaponsManager.m_WeaponSlots[0];
+                        if (weapon1.WeaponName == "Sniper" || weapon1.WeaponName == "Shotgun" || weapon1.WeaponName == "Blaster")
                         {
                             weapon1.AddCarriablePhysicalBullets(BulletCount);
 
@@ -32,9 +30,11 @@ namespace Unity.FPS.Gameplay
                             Destroy(gameObject);
                         }
                     }
-                    if (weapon2.WeaponName == "Sniper" || weapon2.WeaponName == "Shotgun" || weapon2.WeaponName == "Blaster")
-                    {
-                        if (weapon2 != null && Input.GetButton(GameConstants.k_ButtonPickup))
+
+                    if (playerWeaponsManager.m_WeaponSlots[1] != null) {
+                        WeaponController weapon2 = playerWeaponsManager.m_WeaponSlots[1];
+
+                        if (weapon2.WeaponName == "Sniper" || weapon2.WeaponName == "Shotgun" || weapon2.WeaponName == "Blaster")
                         {
                             weapon2.AddCarriablePhysicalBullets(BulletCount);
 
@@ -49,9 +49,11 @@ namespace Unity.FPS.Gameplay
                 }
                 if (this.gameObject.name == "SecondaryAmmo")
                 {
-                    if (weapon1.WeaponName == "GLauncher" || weapon1.WeaponName == "FLauncher")
+                    if (playerWeaponsManager.m_WeaponSlots[0] != null)
                     {
-                        if (weapon1 != null && Input.GetButton(GameConstants.k_ButtonPickup))
+                        WeaponController weapon1 = playerWeaponsManager.m_WeaponSlots[0];
+
+                        if (weapon1.WeaponName == "GLauncher" || weapon1.WeaponName == "FLauncher")
                         {
                             weapon1.AddCarriablePhysicalBullets(BulletCount);
 
@@ -63,9 +65,9 @@ namespace Unity.FPS.Gameplay
                             Destroy(gameObject);
                         }
                     }
-                    if (weapon2.WeaponName == "GLauncher" || weapon2.WeaponName == "FLauncher")
-                    {
-                        if (weapon2 != null && Input.GetButton(GameConstants.k_ButtonPickup))
+                    if (playerWeaponsManager.m_WeaponSlots[1] != null){
+                        WeaponController weapon2 = playerWeaponsManager.m_WeaponSlots[1];
+                        if (weapon2.WeaponName == "GLauncher" || weapon2.WeaponName == "FLauncher")
                         {
                             weapon2.AddCarriablePhysicalBullets(BulletCount);
 

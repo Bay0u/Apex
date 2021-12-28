@@ -79,9 +79,8 @@ MonoBehaviour:
   VerticalBobFrequency: 1
   BobbingAmount: 1
   RotatingSpeed: 360
-  PickupSfx: {fileID: 8300000, guid: 7b83d61917ac1224f942a0609b1221f2, type: 3}
+  PickupSfx: {fileID: 8300000, guid: d0f1afed8fa916244af6ca73579ded67, type: 3}
   PickupVfxPrefab: {fileID: 0}
-  Weapon: {fileID: 0}
   BulletCount: 50
 --- !u!1 &7062793244340496805
 GameObject:
