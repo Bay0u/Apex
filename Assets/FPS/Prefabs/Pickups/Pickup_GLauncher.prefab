@@ -82,6 +82,12 @@ MonoBehaviour:
   PickupVfxPrefab: {fileID: 0}
   WeaponPrefab: {fileID: 8323776800172828795, guid: 5d4f147b8633bfe418e4c61a5085884f,
     type: 3}
+  pickupweapons:
+  - {fileID: 7671270577186476446}
+  - {fileID: 7671270577186476446, guid: a7fa348d53593bb42922672c6cf40651, type: 3}
+  - {fileID: 5391986374566301945, guid: fe0bc5bbccc19ef47a15b81c0abbb779, type: 3}
+  - {fileID: 5391986374566301945, guid: 66d579771ab0ab94a92b3411ba179621, type: 3}
+  - {fileID: 5391986374566301945, guid: b7005eb4709d82d4b9cdf2462b570387, type: 3}
 --- !u!1001 &6629848763452678633
 PrefabInstance:
   m_ObjectHideFlags: 0
