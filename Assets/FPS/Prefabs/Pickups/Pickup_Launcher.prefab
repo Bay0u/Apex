@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 2225486910712267859, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}
       propertyPath: m_Name
-      value: Weapon_Launcher
+      value: Grenade_Launcher
       objectReference: {fileID: 0}
     - target: {fileID: 2225486910712267859, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}

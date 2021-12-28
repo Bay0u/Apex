@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 8745372878802205896}
   - component: {fileID: 8090847488450120274}
   m_Layer: 10
-  m_Name: Weapon_Shotgun
+  m_Name: Shotgun
   m_TagString: Primary_Weapon
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

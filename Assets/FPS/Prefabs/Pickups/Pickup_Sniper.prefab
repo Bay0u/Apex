@@ -153,7 +153,7 @@ PrefabInstance:
     - target: {fileID: 2225486910712267859, guid: f11458fc633051f449cab03a89c860e9,
         type: 3}
       propertyPath: m_Name
-      value: Weapon_Sniper
+      value: Sniper_Rifle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f11458fc633051f449cab03a89c860e9, type: 3}

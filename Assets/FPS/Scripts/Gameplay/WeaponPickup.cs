@@ -30,59 +30,68 @@ namespace Unity.FPS.Gameplay
                 Debug.Log(playerWeaponsManager.m_WeaponSlots.Length);
                 if (playerWeaponsManager.m_WeaponSlots[0] != null)
                 {
-                    Debug.Log("ana me4 fady");
-                    string weapontag = WeaponPrefab.gameObject.tag;
-                    if (weapontag == playerWeaponsManager.m_WeaponSlots[0].gameObject.tag)
+                    //string weapontag = WeaponPrefab.gameObject.tag;
+                    if (WeaponPrefab.gameObject.tag == playerWeaponsManager.m_WeaponSlots[0].gameObject.tag)
                     {
+                        Debug.Log("ana me4 fady");
+
                         WeaponController oldWeapon = playerWeaponsManager.m_WeaponSlots[0];
                         foreach (GameObject Pickupweapon in pickupweapons)
                         {
                             GameObject weapon = Pickupweapon.transform.GetChild(0).gameObject;
-                            if(weapon == oldWeapon.gameObject)
+                            //Debug.Log("d5alt1" + weapon.name +"" + oldWeapon.gameObject.name);
+                            string oldWeaponName = oldWeapon.gameObject.name.Substring(0, oldWeapon.gameObject.name.Length - 7);
+                            //Debug.Log("d5alt1" + weapon.name + " " + oldWeaponName);
+                            if (weapon.name == oldWeaponName)
                             {
-                                Debug.Log("d5alt");
+                                Debug.Log("d5alt gwa 1");
                                 Instantiate(Pickupweapon, this.gameObject.transform.position , Quaternion.identity);
+                                break;
                             }
                             
                         }
                         playerWeaponsManager.AddWeapon(WeaponPrefab);
                         //this.WeaponPrefab = oldWeapon;
                         playerWeaponsManager.RemoveWeapon(oldWeapon);
-                        playerWeaponsManager.SwitchWeapon(true);
-
+                        //playerWeaponsManager.SwitchWeapon(true);
                         return;
                     }
 
                     if (playerWeaponsManager.m_WeaponSlots[1] != null)
                     {
-                        if (weapontag == playerWeaponsManager.m_WeaponSlots[1].gameObject.tag)
+                        Debug.Log("ana me4 fady");
+                        WeaponController oldWeapon = playerWeaponsManager.m_WeaponSlots[1];
+
+                        playerWeaponsManager.AddWeapon(WeaponPrefab);
+                        //this.WeaponPrefab = oldWeapon;
+                        playerWeaponsManager.RemoveWeapon(oldWeapon);
+                        //playerWeaponsManager.SwitchWeapon(true);
+                        //Debug.Log(oldWeapon.name);
+                        if (WeaponPrefab.gameObject.tag == oldWeapon.gameObject.tag)
                         {
-                            WeaponController oldWeapon = playerWeaponsManager.m_WeaponSlots[1];
                             foreach (GameObject Pickupweapon in pickupweapons)
                             {
                                 GameObject weapon = Pickupweapon.transform.GetChild(0).gameObject;
-                                if (weapon == oldWeapon.gameObject)
+                                string oldWeaponName = oldWeapon.gameObject.name.Substring(0, oldWeapon.gameObject.name.Length - 7);
+
+                                //Debug.Log("d5alt2");
+                                if (weapon.name == oldWeaponName)
                                 {
-                                    Debug.Log("d5alt");
+                                    Debug.Log("d5alt gwa 2");
                                     Instantiate(Pickupweapon, this.gameObject.transform.position, Quaternion.identity);
+                                    break;
                                 }
-
                             }
-                            playerWeaponsManager.AddWeapon(WeaponPrefab);
-                            //this.WeaponPrefab = oldWeapon;
-                            playerWeaponsManager.RemoveWeapon(oldWeapon);
-                            playerWeaponsManager.SwitchWeapon(true);
-
-                            //Debug.Log(oldWeapon.name);
                             return;
                         }
                     }
-                    else{ 
+                    else{
                         //adding the weapon
+                        Debug.Log("ana m4 fady bs fe mkan");
                         playerWeaponsManager.AddWeapon(WeaponPrefab);
                         // Handle auto-switching to weapon if no weapons currently
                         playerWeaponsManager.SwitchWeapon(true);
-                        Destroy(gameObject);
+                        //Destroy(gameObject);
                     }
                     }
                     else
@@ -92,12 +101,12 @@ namespace Unity.FPS.Gameplay
                     playerWeaponsManager.AddWeapon(WeaponPrefab);
                     // Handle auto-switching to weapon if no weapons currently
                     playerWeaponsManager.SwitchWeapon(true);
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                     }
 
                     PlayPickupFeedback();
-                    
-                
+                    Destroy(gameObject);
+
             }
         }
     }
