@@ -52,6 +52,8 @@ namespace Unity.FPS.Gameplay
             PlayerCharacterController pickingPlayer = other.GetComponent<PlayerCharacterController>();
             if (pickingPlayer != null && Input.GetButtonUp(GameConstants.k_ButtonPickup))
             {
+
+                
                 OnPicked(pickingPlayer);
 
                 PickupEvent evt = Events.PickupEvent;
