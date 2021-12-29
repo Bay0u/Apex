@@ -74,7 +74,9 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Layer to set FPS weapon gameObjects to")]
         public LayerMask FpsWeaponLayer;
 
+        public int PrimaryAmmo;
 
+        public int SecondaryAmmo;
 
         public GameObject playerScope;
 
@@ -199,7 +201,14 @@ namespace Unity.FPS.Gameplay
                 }
             }
         }
-
+        public void addPrimary(int bullets)
+        {
+            PrimaryAmmo += bullets;
+        }
+        public void addSecondary(int bullets)
+        {
+            SecondaryAmmo += bullets;
+        }
 
         // Update various animated features in LateUpdate because it needs to override the animated arm position
         void LateUpdate()

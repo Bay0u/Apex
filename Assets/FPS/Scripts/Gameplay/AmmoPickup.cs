@@ -16,7 +16,8 @@ namespace Unity.FPS.Gameplay
             {
                 if (this.gameObject.name == "PrimaryAmmo")
                 {
-                    if (playerWeaponsManager.m_WeaponSlots[0] != null) {
+                    if (playerWeaponsManager.m_WeaponSlots[0] != null)
+                    {
                         WeaponController weapon1 = playerWeaponsManager.m_WeaponSlots[0];
                         if (weapon1.WeaponName == "Sniper" || weapon1.WeaponName == "Shotgun" || weapon1.WeaponName == "Assault")
                         {
@@ -31,7 +32,9 @@ namespace Unity.FPS.Gameplay
                         }
                     }
 
-                    if (playerWeaponsManager.m_WeaponSlots[1] != null) {
+
+                    if (playerWeaponsManager.m_WeaponSlots[1] != null)
+                    {
                         WeaponController weapon2 = playerWeaponsManager.m_WeaponSlots[1];
 
                         if (weapon2.WeaponName == "Sniper" || weapon2.WeaponName == "Shotgun" || weapon2.WeaponName == "Assault")
@@ -46,7 +49,7 @@ namespace Unity.FPS.Gameplay
                             Destroy(gameObject);
                         }
 
-                        
+
                     }
 
                     if (playerWeaponsManager.m_WeaponSlots[2] != null)
@@ -64,6 +67,11 @@ namespace Unity.FPS.Gameplay
                             Debug.Log(weapon3.GetCurrentAmmo());
                             Destroy(gameObject);
                         }
+                    }
+                    else
+                    { 
+                        playerWeaponsManager.addPrimary(BulletCount);
+                        Destroy(gameObject);
                     }
                 }
                 if (this.gameObject.name == "SecondaryAmmo")
@@ -113,6 +121,11 @@ namespace Unity.FPS.Gameplay
                             Debug.Log(weapon3.GetCurrentAmmo());
                             Destroy(gameObject);
                         }
+                    }
+                    else
+                    {
+                        playerWeaponsManager.addSecondary(BulletCount);
+                        Destroy(gameObject);
                     }
                 }
 

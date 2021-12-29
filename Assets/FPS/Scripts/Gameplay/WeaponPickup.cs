@@ -47,8 +47,18 @@ namespace Unity.FPS.Gameplay
                             if (weapon.name == oldWeaponName)
                             {
                                     Vector3 weaponPos = this.gameObject.transform.position;
-                                    int bullets = oldWeapon.m_CarriedPhysicalBullets;
-                                    WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    //int bullets = oldWeapon.m_CarriedPhysicalBullets;
+                                   
+                                    if(WeaponPrefab.gameObject.tag == "Primary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.PrimaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
+                                    if (WeaponPrefab.gameObject.tag == "Secondary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.SecondaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
                                     Destroy(gameObject);
                                     playerWeaponsManager.AddWeapon(WeaponPrefab);
                                     playerWeaponsManager.RemoveWeapon(oldWeapon);
@@ -82,8 +92,17 @@ namespace Unity.FPS.Gameplay
                                 {
                                     //Debug.Log("d5alt gwa 2");
                                     Vector3 weaponPos = this.gameObject.transform.position;
-                                    int bullets = oldWeapon.m_CarriedPhysicalBullets;
-                                    WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    //int bullets = oldWeapon.m_CarriedPhysicalBullets;
+                                    if (WeaponPrefab.gameObject.tag == "Primary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.PrimaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
+                                    if (WeaponPrefab.gameObject.tag == "Secondary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.SecondaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
                                     Destroy(gameObject);
                                     playerWeaponsManager.AddWeapon(WeaponPrefab);
                                     playerWeaponsManager.RemoveWeapon(oldWeapon);                                   
@@ -112,8 +131,17 @@ namespace Unity.FPS.Gameplay
                                 {
                                     //Debug.Log("d5alt gwa 2");
                                     Vector3 weaponPos = this.gameObject.transform.position;
-                                    int bullets = oldWeapon.m_CarriedPhysicalBullets;
-                                    WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    //int bullets = oldWeapon.m_CarriedPhysicalBullets;
+                                    if (WeaponPrefab.gameObject.tag == "Primary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.PrimaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
+                                    if (WeaponPrefab.gameObject.tag == "Secondary_Weapon")
+                                    {
+                                        int bullets = playerWeaponsManager.SecondaryAmmo;
+                                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                                    }
                                     Destroy(gameObject);
                                     playerWeaponsManager.AddWeapon(WeaponPrefab);
                                     playerWeaponsManager.RemoveWeapon(oldWeapon);
@@ -129,6 +157,16 @@ namespace Unity.FPS.Gameplay
                     {
                         //adding the weapon
                         //Debug.Log("ana m4 fady bs fe mkan");
+                        if (WeaponPrefab.gameObject.tag == "Primary_Weapon")
+                        {
+                            int bullets = playerWeaponsManager.PrimaryAmmo;
+                            WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                        }
+                        if (WeaponPrefab.gameObject.tag == "Secondary_Weapon")
+                        {
+                            int bullets = playerWeaponsManager.SecondaryAmmo;
+                            WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                        }
                         playerWeaponsManager.AddWeapon(WeaponPrefab);
                         // Handle auto-switching to weapon if no weapons currently
                         playerWeaponsManager.SwitchWeapon(true);
@@ -139,6 +177,24 @@ namespace Unity.FPS.Gameplay
                     {
                     //Debug.Log("ana fady");
                     //adding the weapon
+                    if (WeaponPrefab.gameObject.tag == "Primary_Weapon")
+                    {
+                        int bullets = playerWeaponsManager.PrimaryAmmo;
+                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                        AmmoPickupEvent evt = Events.AmmoPickupEvent;
+                        evt.Weapon = WeaponPrefab;
+                        EventManager.Broadcast(evt);
+                        PlayPickupFeedback();
+                    }
+                    if (WeaponPrefab.gameObject.tag == "Secondary_Weapon")
+                    {
+                        int bullets = playerWeaponsManager.SecondaryAmmo;
+                        WeaponPrefab.AddCarriablePhysicalBullets(bullets);
+                        AmmoPickupEvent evt = Events.AmmoPickupEvent;
+                        evt.Weapon = WeaponPrefab;
+                        EventManager.Broadcast(evt);
+                        PlayPickupFeedback();
+                    }
                     playerWeaponsManager.AddWeapon(WeaponPrefab);
                     // Handle auto-switching to weapon if no weapons currently
                     playerWeaponsManager.SwitchWeapon(true);
