@@ -15,7 +15,7 @@ namespace CoolBattleRoyaleZone
         // Method for showing shrinking timer
         public void ShowShrinkingTime ( Zone.Timer timer )
         {
-            TimeText.text = "<color=red>"                                           + "ZONE SHRINKING: \n <b>" +
+            TimeText.text = "<color=red>"                                           + "SHRINKING STOPS IN \n <b>" +
                             ( timer.EndTime - timer.CurrentTime ).ToString ( "F0" ) + "</b></color>";
         }
 
@@ -25,7 +25,7 @@ namespace CoolBattleRoyaleZone
         // Method for showing waiting timer before shrinking
         public void ShowWaitingTime ( Zone.Timer timer )
         {
-            TimeText.text = "ZONE SHRINKS IN: \n"                                   + "<b><color=red>" +
+            TimeText.text = "ZONE SHRINKS IN \n"                                   + "<b><color=red>" +
                             ( timer.EndTime - timer.CurrentTime ).ToString ( "F0" ) + "</color></b>";
         }
     }
