@@ -10,6 +10,8 @@ namespace Unity.FPS.Gameplay
     [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler), typeof(AudioSource))]
     public class PlayerCharacterController : MonoBehaviour
     {
+       // Animator animator;
+
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
         public GameObject shield;
@@ -104,7 +106,7 @@ namespace Unity.FPS.Gameplay
         public Vector3 CharacterVelocity { get; set; }
         public bool IsGrounded { get; private set; }
         public bool HasJumpedThisFrame { get; private set; }
-        public bool IsDead { get; private set; }
+        public static bool IsDead { get; private set; }
         public bool IsCrouching { get; private set; }
 
         public float RotationMultiplier
@@ -156,6 +158,8 @@ namespace Unity.FPS.Gameplay
 
         void Start()
         {
+            //animator = FindGameObjectInChildWithTag(FindGameObjectInChildWithTag(gameObject, "Main Camera"), "Character").GetComponent<Animator>();
+
             // fetch components on the same gameObject
             m_Controller = GetComponent<CharacterController>();
             DebugUtility.HandleErrorIfNullGetComponent<CharacterController, PlayerCharacterController>(m_Controller,
@@ -184,14 +188,32 @@ namespace Unity.FPS.Gameplay
             UpdateCharacterHeight(true);
         }
 
+        public static GameObject FindGameObjectInChildWithTag(GameObject parent, string tag)
+        {
+            Transform t = parent.transform;
+            for (int i = 0; i < t.childCount; i++)
+            {
+                if (t.GetChild(i).gameObject.tag == tag)
+                {
+                    return t.GetChild(i).gameObject;
+                }
 
-        
+            }
+
+            return null;
+        }
+
 
         void Update()
         {
 
-    
-             UpdateAbilityMeter();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //animator.SetTrigger("Pick");
+                // animator.SetBool("Pick", false);
+            }
+
+            UpdateAbilityMeter();
 
 
             // check for Y kill
@@ -369,12 +391,17 @@ namespace Unity.FPS.Gameplay
 
         void OnDie()
         {
+            PlayerCamera.enabled = false;
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+            PlayerCamera.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+            //PlayerCamera.transform.Translate(new Vector3(0, 0, -10f));
+
             IsDead = true;
 
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
 
-            EventManager.Broadcast(Events.PlayerDeathEvent);
+            //EventManager.Broadcast(Events.PlayerDeathEvent);
         }
 
         void GroundCheck()
@@ -422,7 +449,8 @@ namespace Unity.FPS.Gameplay
             {
                 // rotate the transform with the input speed around its local Y axis
                 if (character != 2 || !abilityMode)
-                    transform.Rotate(
+                    if (!IsDead)
+                        transform.Rotate(
                     new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier),
                         0f), Space.Self);
             }
@@ -437,7 +465,8 @@ namespace Unity.FPS.Gameplay
 
                 // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
                 if(character != 2 || !abilityMode)
-                    PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
+                    if(!IsDead)
+                        PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
             }
 
             // character movement handling
