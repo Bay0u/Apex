@@ -26,7 +26,7 @@ namespace Unity.FPS.Gameplay
                             evt.Weapon = weapon1;
                             EventManager.Broadcast(evt);
                             PlayPickupFeedback();
-                            Debug.Log(weapon1.GetCurrentAmmo());
+                            //Debug.Log(weapon1.GetCurrentAmmo());
                             Destroy(gameObject);
                         }
                     }
@@ -42,7 +42,7 @@ namespace Unity.FPS.Gameplay
                             evt.Weapon = weapon2;
                             EventManager.Broadcast(evt);
                             PlayPickupFeedback();
-                            Debug.Log(weapon2.GetCurrentAmmo());
+                            //Debug.Log(weapon2.GetCurrentAmmo());
                             Destroy(gameObject);
                         }
 

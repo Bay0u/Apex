@@ -92,7 +92,7 @@ namespace Unity.FPS.Game
         public float AmmoReloadDelay = 2f;
 
         [Tooltip("Maximum amount of ammo in the gun")]
-        public int MaxAmmo = 8;
+        public int MaxAmmo = 150;
 
         [Header("Charging parameters (charging weapons only)")]
         [Tooltip("Trigger a shot when maximum charge is reached")]
@@ -133,7 +133,7 @@ namespace Unity.FPS.Game
         public UnityAction OnShoot;
         public event Action OnShootProcessed;
 
-        int m_CarriedPhysicalBullets;
+        public int m_CarriedPhysicalBullets;
         float m_CurrentAmmo;
         float m_LastTimeShot = Mathf.NegativeInfinity;
         public float LastChargeTriggerTimestamp { get; private set; }
