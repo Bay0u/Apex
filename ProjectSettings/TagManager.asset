@@ -10,6 +10,8 @@ TagManager:
   - Secondary_Ammo
   - Primary_Weapon
   - Secondary_Weapon
+  - Character
+  - Secondary Camera
   layers:
   - Default
   - TransparentFX
