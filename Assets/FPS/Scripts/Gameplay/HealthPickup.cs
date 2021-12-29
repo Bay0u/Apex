@@ -11,7 +11,7 @@ namespace Unity.FPS.Gameplay
         protected override void OnPicked(PlayerCharacterController player)
         {
             Health playerHealth = player.GetComponent<Health>();
-            if (playerHealth && playerHealth.CanPickupHealth() && Input.GetButton(GameConstants.k_ButtonPickup))
+            if (playerHealth && playerHealth.CanPickupHealth())
             {
                 playerHealth.Heal(HealAmount);
                 PlayPickupFeedback();

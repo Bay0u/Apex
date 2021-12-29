@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.FPS.Game;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -215,27 +216,38 @@ namespace Unity.FPS.Game
         void PlaySFX(AudioClip sfx) => AudioUtility.CreateSFX(sfx, transform.position, AudioUtility.AudioGroups.WeaponShoot, 0.0f);
 
 
-        void Reload()
+       public int Reload()
         {
+            IsReloading = true;
+
             if (m_CarriedPhysicalBullets > 0)
             {
                 float oldAmmo = m_CurrentAmmo;
                 m_CurrentAmmo = Mathf.Min(m_CarriedPhysicalBullets, ClipSize);
                 float takenAmmo = m_CurrentAmmo - oldAmmo ;
                 m_CarriedPhysicalBullets = (int) (m_CarriedPhysicalBullets- takenAmmo);
+
+
+
             }
 
             IsReloading = false;
+            return m_CarriedPhysicalBullets;
+
         }
 
-        public void StartReloadAnimation()
+        public int StartReloadAnimation()
         {
+
+            int ammo = 0;
             if (m_CurrentAmmo < m_CarriedPhysicalBullets)
             {
-                Reload();
+                 ammo=Reload();
                 GetComponent<Animator>().SetTrigger("Reload");
                 IsReloading = true;
+
             }
+            return ammo;
         }
 
         void Update()

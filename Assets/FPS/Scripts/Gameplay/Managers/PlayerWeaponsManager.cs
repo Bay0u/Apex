@@ -145,7 +145,20 @@ namespace Unity.FPS.Gameplay
                 if (!activeWeapon.AutomaticReload && m_InputHandler.GetReloadButtonDown() && activeWeapon.CurrentAmmoRatio < 1.0f)
                 {
                     IsAiming = false;
-                    activeWeapon.StartReloadAnimation();
+                    int ammo=activeWeapon.Reload();
+                    
+                    if (activeWeapon.gameObject.tag == "Primary_Weapon")
+                    {
+                        PrimaryAmmo = ammo; 
+
+
+                    }
+                    if (activeWeapon.gameObject.tag == "Secondary_Weapon")
+                    {
+                        SecondaryAmmo=ammo;
+
+
+                    }
                     return;
                 }
                 // handle aiming down sights
@@ -204,10 +217,23 @@ namespace Unity.FPS.Gameplay
         public void addPrimary(int bullets)
         {
             PrimaryAmmo += bullets;
+            WeaponController activeWeapon = GetActiveWeapon();
+            
+            if (activeWeapon && activeWeapon.gameObject.tag == "Primary_Weapon")
+            {
+                activeWeapon.AddCarriablePhysicalBullets(bullets);
+            }
+            
         }
         public void addSecondary(int bullets)
         {
             SecondaryAmmo += bullets;
+            WeaponController activeWeapon = GetActiveWeapon();
+            if (activeWeapon && activeWeapon.gameObject.tag == "Secondary_Weapon")
+            {
+                activeWeapon.AddCarriablePhysicalBullets(bullets);
+            }
+
         }
 
         // Update various animated features in LateUpdate because it needs to override the animated arm position
@@ -457,12 +483,12 @@ namespace Unity.FPS.Gameplay
         }
 
         // Adds a weapon to our inventory
-        public bool AddWeapon(WeaponController weaponPrefab)
+        public int AddWeapon(WeaponController weaponPrefab)
         {
             // if we already hold this weapon type (a weapon coming from the same source prefab), don't add the weapon
             if (HasWeapon(weaponPrefab) != null)
             {
-                return false;
+                return -1;
             }
 
             // search our weapon slots for the first free one, assign the weapon to it, and return true if we found one. Return false otherwise
@@ -497,7 +523,7 @@ namespace Unity.FPS.Gameplay
                         OnAddedWeapon.Invoke(weaponInstance, i);
                     }
 
-                    return true;
+                    return i;
                 }
             }
 
@@ -508,7 +534,7 @@ namespace Unity.FPS.Gameplay
                 SwitchWeapon(true);
             }
 
-            return false;
+            return -1;
         }
 
         public bool RemoveWeapon(WeaponController weaponInstance)
