@@ -124,7 +124,7 @@ namespace Unity.FPS.Gameplay
 
         private bool abilityMode = false;
         private bool canDouble = false;
-        private int character = 1;
+        public static int character = 1;
         private int abilityMeter = 0;
   
         float lastTimeAbilityMeterUpdated = 0.0f;
