@@ -46,8 +46,12 @@ namespace CoolBattleRoyaleZone
 		private IEnumerator DoDamageCoroutine ( )
 		{
 			_wait = true;
-			DoDamage ( );
+			
 			yield return new WaitForSeconds ( 10 ); // Waiting between damages.
+            if (!inRegion)
+            {
+				DoDamage();
+			}
 			_wait = false;
 		}
 
