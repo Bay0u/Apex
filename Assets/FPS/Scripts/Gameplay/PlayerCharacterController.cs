@@ -14,6 +14,7 @@ namespace Unity.FPS.Gameplay
 
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
+        public Camera WeaponCamera;
         public GameObject shield;
         [Tooltip("Audio source for footsteps, jump, etc...")]
         public AudioSource AudioSource;
@@ -108,7 +109,7 @@ namespace Unity.FPS.Gameplay
         public bool HasJumpedThisFrame { get; private set; }
         public static bool IsDead { get; private set; }
         public bool IsCrouching { get; private set; }
-
+        
         public float RotationMultiplier
         {
             get
@@ -206,6 +207,16 @@ namespace Unity.FPS.Gameplay
 
         void Update()
         {
+            if (Game.Objective.IsCompleted)
+            {
+                PlayerCamera.enabled = false;
+                WeaponCamera.enabled = false;
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+                PlayerCamera.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+                m_WeaponsManager.SwitchToWeaponIndex(-1, true);
+
+
+            }
 
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -449,7 +460,7 @@ namespace Unity.FPS.Gameplay
             {
                 // rotate the transform with the input speed around its local Y axis
                 if (character != 2 || !abilityMode)
-                    if (!IsDead)
+                    if (!IsDead && !Game.Objective.IsCompleted)
                         transform.Rotate(
                     new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier),
                         0f), Space.Self);
@@ -465,7 +476,7 @@ namespace Unity.FPS.Gameplay
 
                 // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
                 if(character != 2 || !abilityMode)
-                    if(!IsDead)
+                    if(!IsDead && !Game.Objective.IsCompleted)
                         PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
             }
 

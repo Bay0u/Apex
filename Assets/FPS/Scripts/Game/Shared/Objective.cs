@@ -17,7 +17,7 @@ namespace Unity.FPS.Game
         [Tooltip("Delay before the objective becomes visible")]
         public float DelayVisible;
 
-        public bool IsCompleted { get; private set; }
+        public static bool IsCompleted { get; private set; }
         public bool IsBlocking() => !(IsOptional || IsCompleted);
 
         public static event Action<Objective> OnObjectiveCreated;
@@ -30,7 +30,7 @@ namespace Unity.FPS.Game
             DisplayMessageEvent displayMessage = Events.DisplayMessageEvent;
             displayMessage.Message = Title;
             displayMessage.DelayBeforeDisplay = 0.0f;
-            EventManager.Broadcast(displayMessage);
+            //EventManager.Broadcast(displayMessage);
         }
 
         public void UpdateObjective(string descriptionText, string counterText, string notificationText)
@@ -41,7 +41,7 @@ namespace Unity.FPS.Game
             evt.CounterText = counterText;
             evt.NotificationText = notificationText;
             evt.IsComplete = IsCompleted;
-            EventManager.Broadcast(evt);
+            //EventManager.Broadcast(evt);
         }
 
         public void CompleteObjective(string descriptionText, string counterText, string notificationText)
@@ -53,10 +53,10 @@ namespace Unity.FPS.Game
             evt.DescriptionText = descriptionText;
             evt.CounterText = counterText;
             evt.NotificationText = notificationText;
-            evt.IsComplete = IsCompleted;
-            EventManager.Broadcast(evt);
+            //evt.IsComplete = IsCompleted;
+            //EventManager.Broadcast(evt);
 
-            OnObjectiveCompleted?.Invoke(this);
+            //OnObjectiveCompleted?.Invoke(this);
         }
     }
 }

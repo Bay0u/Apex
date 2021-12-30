@@ -23,10 +23,12 @@ namespace Unity.FPS.Gameplay
             }
             if (PlayerCharacterController.IsDead)
             {
-                print("mango");
                 animator.SetTrigger("Die");
             }
-
+            if (Game.Objective.IsCompleted)
+            {
+                animator.SetTrigger("Won");
+            }
 
         }
     }
