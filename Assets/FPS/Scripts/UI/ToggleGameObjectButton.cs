@@ -24,5 +24,10 @@ namespace Unity.FPS.UI
             if (ResetSelectionAfterClick)
                 EventSystem.current.SetSelectedGameObject(null);
         }
+
+        public void doExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
