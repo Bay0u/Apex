@@ -1555,7 +1555,6 @@ GameObject:
   m_Component:
   - component: {fileID: 328473777}
   - component: {fileID: 328473779}
-  - component: {fileID: 328473778}
   - component: {fileID: 328473780}
   m_Layer: 5
   m_Name: Card (1)
@@ -1590,18 +1589,6 @@ RectTransform:
   m_AnchoredPosition: {x: 330, y: 4}
   m_SizeDelta: {x: 326.5, y: 465.2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &328473778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328473776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b9379e27093cd469ac394adb1b703f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &328473779
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1689,6 +1676,18 @@ MonoBehaviour:
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1402150640}
+        m_TargetAssemblyTypeName: ChooseCharacter, Assembly-CSharp
+        m_MethodName: change
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2530,7 +2529,6 @@ GameObject:
   m_Component:
   - component: {fileID: 496030289}
   - component: {fileID: 496030292}
-  - component: {fileID: 496030291}
   - component: {fileID: 496030290}
   m_Layer: 5
   m_Name: Card (2)
@@ -2648,18 +2646,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &496030291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496030288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b9379e27093cd469ac394adb1b703f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      - m_Target: {fileID: 1402150640}
+        m_TargetAssemblyTypeName: ChooseCharacter, Assembly-CSharp
+        m_MethodName: change
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &496030292
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5498,6 +5496,154 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049767733}
   m_CullTransparentMesh: 0
+--- !u!1 &1098919249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098919250}
+  - component: {fileID: 1098919252}
+  - component: {fileID: 1098919251}
+  m_Layer: 5
+  m_Name: howToPlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1098919250
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098919249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2095643681}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 130}
+  m_SizeDelta: {x: 900, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1098919251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098919249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "1. The player controls the camera with the mouse movement (player Look
+    At).\r\n2. The player controls the walking movements forward and backward using
+    the up and\r\ndown keys as well as the \u201DW\u201D and \u201DS\u201D keys respectively.\r\n3.
+    The player controls the champion walking movement right and left using the right\r\nand
+    left keys or the \u201DA\u201D and \u201DD\u201D keys respectively.\r\n4. The
+    player runs/sprints by holding down left-shift along with one of the movement\r\nkeys.\r\n5.
+    The player jumps by pressing space.\r\n6. The player double jumps by pressing
+    space mid air.\r\n7. The player crouches by pressing \u201DC\u201D or left ctrl
+    key.\r\n8. The player fires bullets from their currently equipped weapon using
+    left mouse click.\r\n9. The player can pick up weapons by pressing \u201DE\u201D
+    key.\r\n10. The player can reload their currently equipped weapon using \u201DR\u201D
+    key.\r\n11. The player can switch between different weapons types (primary with
+    secondary\r\nand vice versa) using \u201DZ\u201D key.\r\n12. The player can activate
+    their special-ability by pressing \u201DQ\u201D key.\r\n13. The player can pause
+    the game by pressing ESC."
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1098919252
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098919249}
+  m_CullTransparentMesh: 1
 --- !u!1 &1126421973
 GameObject:
   m_ObjectHideFlags: 0
@@ -6380,6 +6526,7 @@ GameObject:
   - component: {fileID: 1402150638}
   - component: {fileID: 1402150637}
   - component: {fileID: 1402150636}
+  - component: {fileID: 1402150640}
   m_Layer: 5
   m_Name: chooseCharacter
   m_TagString: Untagged
@@ -6474,6 +6621,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1402150640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402150635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c28912fdeb7a14cb4fbc017b5cbfc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1425053043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6743,9 +6902,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1491205000}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetGameObjectActive
-        m_Mode: 6
+        m_TargetAssemblyTypeName: Unity.FPS.UI.ToggleGameObjectButton, fps.UI
+        m_MethodName: doExitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6974,7 +7133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1520084246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8057,7 +8216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1834662533}
   - component: {fileID: 1834662534}
-  - component: {fileID: 1834662535}
   - component: {fileID: 1834662536}
   m_Layer: 5
   m_Name: Card
@@ -8100,27 +8258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834662532}
   m_CullTransparentMesh: 1
---- !u!114 &1834662535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834662532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfcd8077f7c206449b79c07b817312d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: {fileID: 786603406}
-  desc: {fileID: 848963111}
-  attack: {fileID: 0}
-  health: {fileID: 0}
-  healthi: 0
-  attacki: 0
-  manaCount: {fileID: 0}
-  artwork: {fileID: 0}
-  card: {fileID: 11400000, guid: 2498e97d672b6ee40aa5cb5f3f374595, type: 2}
 --- !u!114 &1834662536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8199,6 +8336,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 2100000, guid: 59ebf72ac68993f4d917964b4ae56b9c,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1402150640}
+        m_TargetAssemblyTypeName: ChooseCharacter, Assembly-CSharp
+        m_MethodName: change
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9927,6 +10076,7 @@ RectTransform:
   - {fileID: 1520084246}
   - {fileID: 1127333837}
   - {fileID: 924247876}
+  - {fileID: 1098919250}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

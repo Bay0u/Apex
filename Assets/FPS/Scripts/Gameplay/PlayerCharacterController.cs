@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Unity.FPS.Gameplay
 {
@@ -124,7 +125,7 @@ namespace Unity.FPS.Gameplay
 
         private bool abilityMode = false;
         private bool canDouble = false;
-        private int character = 1;
+        public static int character = 1;
         private int abilityMeter = 0;
   
         float lastTimeAbilityMeterUpdated = 0.0f;
@@ -203,10 +204,10 @@ namespace Unity.FPS.Gameplay
             return null;
         }
 
-
+        public Image abilityMeterImg;
         void Update()
         {
-
+            abilityMeterImg.fillAmount = abilityMeter * 1.0f / 100;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 //animator.SetTrigger("Pick");

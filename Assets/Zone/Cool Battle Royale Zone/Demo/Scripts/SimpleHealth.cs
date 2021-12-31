@@ -10,6 +10,7 @@ namespace CoolBattleRoyaleZone
     /// </summary>
 	public class SimpleHealth : MonoBehaviour
 	{
+		private bool inRegion = true;
 		private bool _wait;
 		Health health;
 		private void Update ( )
@@ -23,14 +24,34 @@ namespace CoolBattleRoyaleZone
 			health = GetComponent<Health>();
 			// Checking if we inner of circle or not by radius and if not, start applying damage to health
 			if ( dstToZone > zoneRadius && !_wait ) StartCoroutine ( DoDamageCoroutine ( ) );
+			if(dstToZone > zoneRadius)
+            {
+                if (inRegion)
+                {
+					inRegion = false;
+					GetComponent<handleRegion>().goOutside();
+                }
+            }
+            else
+            {
+				if (!inRegion)
+				{
+					inRegion = true;
+					GetComponent<handleRegion>().goInside();
+				}
+			}
 		}
 
 		// Method for waiting time between applying damage
 		private IEnumerator DoDamageCoroutine ( )
 		{
 			_wait = true;
-			DoDamage ( );
+			
 			yield return new WaitForSeconds ( 10 ); // Waiting between damages.
+            if (!inRegion)
+            {
+				DoDamage();
+			}
 			_wait = false;
 		}
 

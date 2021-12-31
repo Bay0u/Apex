@@ -1,9 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Unity.FPS.Game;
+using Unity.FPS.Gameplay;
 
-namespace Unity.FPS.Game
-{
-    public class startmainmenu : MonoBehaviour
+public class ChooseCharacter : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
@@ -16,10 +17,8 @@ namespace Unity.FPS.Game
         {
 
         }
-        public void StartMainScene()
+        public void change(int x)
         {
-            SceneManager.LoadScene("Demo");
-            Time.timeScale = 1f;
+        PlayerCharacterController.character=x;
         }
     }
-}
