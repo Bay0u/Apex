@@ -58,8 +58,7 @@ namespace Unity.FPS.Game
             if (s_AudioManager == null)
                 s_AudioManager = GameObject.FindObjectOfType<AudioManager>();
 
-            if (value <= 0)
-                value = 0.001f;
+           
             float valueInDb = Mathf.Log10(value) * 20;
 
             s_AudioManager.SetFloat("MasterVolume", valueInDb);

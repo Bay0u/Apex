@@ -1,6 +1,7 @@
 ﻿using Unity.FPS.Game;
 using Unity.FPS.Gameplay;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -32,6 +33,9 @@ namespace Unity.FPS.UI
         PlayerInputHandler m_PlayerInputsHandler;
         Health m_PlayerHealth;
         FramerateCounter m_FramerateCounter;
+        public AudioMixer AudioMixer;
+        public AudioSource AudioSource;
+        public AudioClip MainMenuSound; 
 
         void Start()
         {
@@ -112,9 +116,12 @@ namespace Unity.FPS.UI
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Time.timeScale = 0f;
-                AudioUtility.SetMasterVolume(VolumeWhenMenuOpen);
-
+             
+                AudioUtility.SetMasterVolume(-80.0f);
                 EventSystem.current.SetSelectedGameObject(null);
+                float valueInDb = Mathf.Log10(1) * 20;
+                AudioMixer.SetFloat("Master", 20);
+                AudioSource.PlayOneShot(MainMenuSound);
             }
             else
             {
@@ -122,6 +129,9 @@ namespace Unity.FPS.UI
                 Cursor.visible = false;
                 Time.timeScale = 1f;
                 AudioUtility.SetMasterVolume(1);
+                float valueInDb = Mathf.Log10(-80.0f) * 20;
+                AudioMixer.SetFloat("Master", -80.0f);
+                AudioSource.Pause();
             }
 
         }

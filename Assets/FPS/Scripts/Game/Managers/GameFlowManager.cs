@@ -68,7 +68,7 @@ namespace Unity.FPS.Game
         }
         public void StartMainScene()
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("Demo");
             Time.timeScale = 1f;
         }
         void OnAllObjectivesCompleted(AllObjectivesCompletedEvent evt) => EndGame(true);

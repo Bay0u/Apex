@@ -223,12 +223,10 @@ namespace Unity.FPS.Game
             if (m_CarriedPhysicalBullets > 0)
             {
                 float oldAmmo = m_CurrentAmmo;
-                m_CurrentAmmo = Mathf.Min(m_CarriedPhysicalBullets, ClipSize);
+                float ammoLeft = ClipSize - oldAmmo;
+                m_CurrentAmmo = Mathf.Min(oldAmmo+m_CarriedPhysicalBullets, ClipSize);
                 float takenAmmo = m_CurrentAmmo - oldAmmo ;
                 m_CarriedPhysicalBullets = (int) (m_CarriedPhysicalBullets- takenAmmo);
-
-
-
             }
 
             IsReloading = false;
