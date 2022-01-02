@@ -37,6 +37,7 @@ namespace Unity.FPS.Gameplay
                 return;
 
             m_KillTotal++;
+            print("mango");
 
             if (MustKillAllEnemies)
                 KillsToCompleteObjective = evt.RemainingEnemyCount + m_KillTotal;

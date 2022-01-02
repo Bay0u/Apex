@@ -11,7 +11,11 @@ namespace Unity.FPS.Gameplay
     [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler), typeof(AudioSource))]
     public class PlayerCharacterController : MonoBehaviour
     {
-       // Animator animator;
+        // Animator animator;
+        public static bool parkour = false;
+        public GameObject lob;
+        public GameObject bang;
+        public GameObject blood; 
 
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera PlayerCamera;
@@ -156,6 +160,19 @@ namespace Unity.FPS.Gameplay
             ActorsManager actorsManager = FindObjectOfType<ActorsManager>();
             if (actorsManager != null)
                 actorsManager.SetPlayer(gameObject);
+
+            if (character == 0)
+            {
+                lob.SetActive(true);
+            }
+            if (character == 1)
+            {
+                bang.SetActive(true);
+            }
+            if (character == 2)
+            {
+                blood.SetActive(true);
+            }
         }
 
         void Start()
@@ -188,6 +205,8 @@ namespace Unity.FPS.Gameplay
             // force the crouch state to false when starting
             SetCrouchingState(false, true);
             UpdateCharacterHeight(true);
+
+            
         }
 
         public static GameObject FindGameObjectInChildWithTag(GameObject parent, string tag)
@@ -208,9 +227,10 @@ namespace Unity.FPS.Gameplay
         public Image abilityMeterImg;
         void Update()
         {
-
+            
             if (Game.Objective.IsCompleted)
             {
+                parkour = true;
                 PlayerCamera.enabled = false;
                 WeaponCamera.enabled = false;
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
@@ -272,7 +292,7 @@ namespace Unity.FPS.Gameplay
             }
 
             // Ability    
-            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100)
+            if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100 && !parkour)
             {
                 abilityMeter = 0;
                 if (character == 0)
@@ -389,7 +409,6 @@ namespace Unity.FPS.Gameplay
         private void UpdateAbilityMeter()
         {
 
-            abilityMeter = 100;
             if (Time.time - lastTimeAbilityMeterUpdated >= 1.0f)
             {
                 lastTimeAbilityMeterUpdated = Time.time;
@@ -414,7 +433,7 @@ namespace Unity.FPS.Gameplay
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
 
-            //EventManager.Broadcast(Events.PlayerDeathEvent);
+            EventManager.Broadcast(Events.PlayerDeathEvent);
         }
 
         void GroundCheck()
@@ -553,7 +572,7 @@ namespace Unity.FPS.Gameplay
                 else
                 {
 
-                    if (character == 2 && canDouble)
+                    if ((parkour|character == 2) && canDouble)
                     {
                         print("CanDouble Jump");
                         if(m_InputHandler.GetJumpInputDown())

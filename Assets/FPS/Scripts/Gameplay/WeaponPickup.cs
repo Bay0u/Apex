@@ -190,7 +190,7 @@ namespace Unity.FPS.Gameplay
                         evt.Weapon = WeaponPrefab;
                         EventManager.Broadcast(evt);                     
                         // Handle auto-switching to weapon if no weapons currently
-                        playerWeaponsManager.SwitchWeapon(true);
+                        //playerWeaponsManager.SwitchWeapon(true);
                         Destroy(gameObject);
                         PlayPickupFeedback();
                     }

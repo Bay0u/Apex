@@ -339,7 +339,7 @@ namespace Unity.FPS.Gameplay
                         AimingAnimationSpeed * Time.deltaTime);
                     SetFov(Mathf.Lerp(m_PlayerCharacterController.PlayerCamera.fieldOfView,
                         activeWeapon.AimZoomRatio * DefaultFov, AimingAnimationSpeed * Time.deltaTime));
-                    if(activeWeapon.WeaponName.Equals("Sniper"))
+                    if(activeWeapon && activeWeapon.WeaponName.Equals("Sniper"))
                     {
                         //WeaponCamera.fieldOfView = 10;
                         playerScope.SetActive(true);
@@ -352,7 +352,7 @@ namespace Unity.FPS.Gameplay
                         DefaultWeaponPosition.localPosition, AimingAnimationSpeed * Time.deltaTime);
                     SetFov(Mathf.Lerp(m_PlayerCharacterController.PlayerCamera.fieldOfView, DefaultFov,
                         AimingAnimationSpeed * Time.deltaTime));
-                    if (activeWeapon.WeaponName.Equals("Sniper"))
+                    if (activeWeapon && activeWeapon.WeaponName.Equals("Sniper"))
                     {
                         //WeaponCamera.fieldOfView = 10;
                         playerScope.SetActive(false);

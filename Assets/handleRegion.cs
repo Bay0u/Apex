@@ -33,7 +33,8 @@ public class handleRegion : MonoBehaviour
     }
     public void setPAMMO()
     {
-        PAMMOtext.text = "Primary Ammo: " + GetComponent<PlayerWeaponsManager>().PrimaryAmmo + " / 150";
+        if(!GetComponent<PlayerWeaponsManager>())
+            PAMMOtext.text = "Primary Ammo: " + GetComponent<PlayerWeaponsManager>().PrimaryAmmo + " / 150";
     }
     public void setSAMMO()
     {

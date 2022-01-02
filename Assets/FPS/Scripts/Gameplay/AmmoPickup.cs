@@ -68,10 +68,14 @@ namespace Unity.FPS.Gameplay
                             Destroy(gameObject);
                         }
                     }*/
-                   /* else
-                    {*/ 
+                    /* else
+                     {*/
+                    if (playerWeaponsManager.PrimaryAmmo <= 100) 
+                    {
                         playerWeaponsManager.addPrimary(BulletCount);
                         Destroy(gameObject);
+                    }
+                    
                     //}
                 }
                 if (this.gameObject.name == "SecondaryAmmo")
@@ -122,10 +126,13 @@ namespace Unity.FPS.Gameplay
                             Destroy(gameObject);
                         }
                     }*/
-                   /* else
-                    {*/
+                    /* else
+                     {*/
+                    if (playerWeaponsManager.SecondaryAmmo <= 3)
+                    {
                         playerWeaponsManager.addSecondary(BulletCount);
                         Destroy(gameObject);
+                    }
                     //}
                 }
 
