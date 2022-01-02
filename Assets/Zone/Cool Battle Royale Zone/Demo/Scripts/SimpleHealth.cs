@@ -32,7 +32,7 @@ namespace CoolBattleRoyaleZone
 					// thank you
 					// read the comment below this line
 					// this line is commented
-					//GetComponent<handleRegion>().goOutside();
+					GetComponent<handleRegion>().goOutside();
                 }
             }
             else
@@ -40,7 +40,7 @@ namespace CoolBattleRoyaleZone
 				if (!inRegion)
 				{
 					inRegion = true;
-					//GetComponent<handleRegion>().goInside();
+					GetComponent<handleRegion>().goInside();
 				}
 			}
 		}
