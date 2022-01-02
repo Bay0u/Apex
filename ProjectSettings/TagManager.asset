@@ -12,6 +12,7 @@ TagManager:
   - Secondary_Weapon
   - Character
   - Secondary Camera
+  - winParkour
   layers:
   - Default
   - TransparentFX

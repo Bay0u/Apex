@@ -5,6 +5,8 @@ using Unity.FPS.Game;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 namespace Unity.FPS.Gameplay
 {
@@ -149,8 +151,8 @@ namespace Unity.FPS.Gameplay
         float m_CameraVerticalAngle = 0f;
         float m_FootstepDistanceCounter;
         float m_TargetCharacterHeight;
-
-
+        Vector3 initialCamera;
+        private bool LockRotation ;
 
         const float k_JumpGroundingPreventionTime = 0.2f;
         const float k_GroundCheckDistanceInAir = 0.07f;
@@ -173,6 +175,7 @@ namespace Unity.FPS.Gameplay
             {
                 blood.SetActive(true);
             }
+            LockRotation = false;
         }
 
         void Start()
@@ -225,19 +228,36 @@ namespace Unity.FPS.Gameplay
         }
 
         public Image abilityMeterImg;
-        void Update()
+        void switchScene()
+            {
+            LockRotation = false;
+            SceneManager.LoadScene("parkour");
+        }
+    void Update()
         {
             
-            if (Game.Objective.IsCompleted)
+            if (Game.Objective.IsCompleted && !parkour)
             {
                 parkour = true;
+                Debug.Log("hi bros");
+                WeaponController activeWeapon = m_WeaponsManager.GetActiveWeapon();
+                if (activeWeapon && activeWeapon.WeaponName.Equals("Sniper"))
+                {
+                    //WeaponCamera.fieldOfView = 10;
+                    m_WeaponsManager.playerScope.SetActive(false);
+                    //weaponC.SetActive(false);
+                }
                 PlayerCamera.enabled = false;
                 WeaponCamera.enabled = false;
+                //initialCamera = PlayerCamera.transform.rotation;
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
                 PlayerCamera.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
                 m_WeaponsManager.SwitchToWeaponIndex(-1, true);
+                //starting the parkour level
+                LockRotation = true;
+                Invoke("switchScene", 6);
             }
-
+            
             abilityMeterImg.fillAmount = abilityMeter * 1.0f / 100;
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -416,9 +436,21 @@ namespace Unity.FPS.Gameplay
             }
         }
         public static List<GameObject> ObjectsInRange = new List<GameObject>();
+        /*private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("winParkour"))
+            {
+                Debug.Log("mbroook");
+            }
+        }*/
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("winParkour"))
+            {
+                Debug.Log("mbroook");
+            }
+        }
 
-        
-        
 
 
         void OnDie()
@@ -481,7 +513,7 @@ namespace Unity.FPS.Gameplay
             {
                 // rotate the transform with the input speed around its local Y axis
                 if (character != 2 || !abilityMode)
-                    if (!IsDead && !Game.Objective.IsCompleted)
+                    if (!IsDead && !LockRotation)
                         transform.Rotate(
                     new Vector3(0f, (m_InputHandler.GetLookInputsHorizontal() * RotationSpeed * RotationMultiplier),
                         0f), Space.Self);
@@ -497,8 +529,9 @@ namespace Unity.FPS.Gameplay
 
                 // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
                 if(character != 2 || !abilityMode)
-                    if(!IsDead && !Game.Objective.IsCompleted)
+                    if (!IsDead && !LockRotation)
                         PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
+                        //this.gameObject.FreezePosition;
             }
 
             // character movement handling
