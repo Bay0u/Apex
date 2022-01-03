@@ -32,7 +32,8 @@ namespace CoolBattleRoyaleZone
 					// thank you
 					// read the comment below this line
 					// this line is commented
-					GetComponent<handleRegion>().goOutside();
+					if(gameObject.tag.Equals("Player"))
+						GetComponent<handleRegion>().goOutside();
                 }
             }
             else
@@ -40,7 +41,8 @@ namespace CoolBattleRoyaleZone
 				if (!inRegion)
 				{
 					inRegion = true;
-					GetComponent<handleRegion>().goInside();
+					if (gameObject.tag.Equals("Player"))
+						GetComponent<handleRegion>().goInside();
 				}
 			}
 		}

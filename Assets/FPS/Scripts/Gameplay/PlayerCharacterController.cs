@@ -459,6 +459,7 @@ namespace Unity.FPS.Gameplay
             if (other.CompareTag("winParkour"))
             {
                 Debug.Log("mbroook");
+                SceneManager.LoadScene("Rolling_Credits");
             }
         }
 
