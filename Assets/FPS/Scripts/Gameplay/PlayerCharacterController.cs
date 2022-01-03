@@ -89,6 +89,7 @@ namespace Unity.FPS.Gameplay
 
         public AudioClip sheildSfx;
         public AudioClip teleportSfx;
+        public AudioClip coreSfx;
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -323,7 +324,6 @@ namespace Unity.FPS.Gameplay
                 {
                     Ability0();
                     AudioSource.PlayOneShot(sheildSfx);
-                    Debug.Log("hi 0");
                 }
                 if (character == 1)
                 {// lopa
@@ -333,8 +333,7 @@ namespace Unity.FPS.Gameplay
                 if (character == 2)
                 {
                     Ability2();
-                    AudioSource.PlayOneShot(teleportSfx);
-                    Debug.Log("hi 2");
+                    AudioSource.PlayOneShot(coreSfx);
                 }
                 // print("Done ability");
             }
