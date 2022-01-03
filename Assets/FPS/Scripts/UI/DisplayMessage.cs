@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using Unity.FPS.Gameplay;
+using UnityEngine;
 
 namespace Unity.FPS.UI
 {
     public class DisplayMessage : MonoBehaviour
     {
+        public TextMeshProUGUI killedd;
+        private void Update()
+        {
+            killedd.text = "Killed "+GetComponent<ObjectiveKillEnemies>().GetUpdatedCounterAmount();
+
+        }
         //[Tooltip("The text that will be displayed")] [TextArea]
         //public string message;
         //

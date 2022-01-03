@@ -67,7 +67,7 @@ namespace Unity.FPS.Gameplay
             }
         }
 
-        string GetUpdatedCounterAmount()
+        public string GetUpdatedCounterAmount()
         {
             return m_KillTotal + " / " + KillsToCompleteObjective;
         }
