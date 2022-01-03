@@ -253,10 +253,7 @@ namespace Unity.FPS.Game
 
         void Update()
         {
-            if(PlayerCharacterController.character==0&&khalas){
-                MaxAmmo=MaxAmmo*2;
-                khalas=false;
-            }
+           
             UpdateAmmo();
             UpdateCharge();
             UpdateContinuousShootSound();
