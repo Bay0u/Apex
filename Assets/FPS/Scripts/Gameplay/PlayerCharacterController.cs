@@ -248,7 +248,7 @@ namespace Unity.FPS.Gameplay
             if (Game.Objective.IsCompleted && !parkour)
             {
                 parkour = true;
-                Debug.Log("hi bros");
+                //Debug.Log("hi bros");
                 AudioSourcew.PlayOneShot(winSfx);
                 WeaponController activeWeapon = m_WeaponsManager.GetActiveWeapon();
                 if (activeWeapon && activeWeapon.WeaponName.Equals("Sniper"))
