@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4512624, g: 0.50095606, b: 0.5734378, a: 1}
+  m_IndirectSpecularColor: {r: 0.4499213, g: 0.4999773, b: 0.57555616, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2668,6 +2668,11 @@ PrefabInstance:
       propertyPath: Diesfx
       value: 
       objectReference: {fileID: 8300000, guid: 0780f89e6967745479fe02009bc894de, type: 3}
+    - target: {fileID: 4455580217562104685, guid: 18dbb29883328c44f8b0893cddbe603e,
+        type: 3}
+      propertyPath: AudioSourced
+      value: 
+      objectReference: {fileID: 710288543}
     - target: {fileID: 4455580217562104685, guid: 18dbb29883328c44f8b0893cddbe603e,
         type: 3}
       propertyPath: abilityMeterImg
