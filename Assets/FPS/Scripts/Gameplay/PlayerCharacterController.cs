@@ -551,7 +551,7 @@ namespace Unity.FPS.Gameplay
                     isSprinting = SetCrouchingState(false, false);
                 }
 
-                float speedModifier = isSprinting ? (character ==0)?SprintSpeedModifier*2: SprintSpeedModifier : 1f;
+                float speedModifier = isSprinting ? (character ==0&&!parkour)?SprintSpeedModifier*2: SprintSpeedModifier : 1f;
 
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());
