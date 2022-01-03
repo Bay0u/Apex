@@ -17,7 +17,7 @@ namespace Unity.FPS.Game
         [Tooltip("Delay before the objective becomes visible")]
         public float DelayVisible;
 
-        public static bool IsCompleted { get; private set; }
+        public static bool IsCompleted { get;  set; }
         public bool IsBlocking() => !(IsOptional || IsCompleted);
 
         public static event Action<Objective> OnObjectiveCreated;
