@@ -42,6 +42,13 @@ public class handleRegion : MonoBehaviour
     }
     public void setSAMMO()
     {
-        SAMMOtext.text = "Secondary Ammo: "+ GetComponent<PlayerWeaponsManager>().SecondaryAmmo+ " / 5";
+        if (PlayerCharacterController.character == 0)
+        {
+            SAMMOtext.text = "Secondary Ammo: " + GetComponent<PlayerWeaponsManager>().SecondaryAmmo + " / 10";
+        }
+        else
+        {
+            SAMMOtext.text = "Secondary Ammo: " + GetComponent<PlayerWeaponsManager>().SecondaryAmmo + " / 5";
+        }
     }
 }

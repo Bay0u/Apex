@@ -49,13 +49,22 @@ namespace CoolBattleRoyaleZone
 		private IEnumerator DoDamageCoroutine ( )
 		{
 			_wait = true;
-			
-			yield return new WaitForSeconds ( 10 ); // Waiting between damages.
-            if (!inRegion)
+			if (this.gameObject.tag == "Player")
+			{
+				yield return new WaitForSeconds(10); // Waiting between damages.
+				if (!inRegion)
+				{
+					DoDamage();
+				}
+				_wait = false;
+            }
+            else
             {
-				DoDamage();
+				if (!inRegion)
+				{
+					DoDamage();
+				}
 			}
-			_wait = false;
 		}
 
 		// Method for applying damage to health
