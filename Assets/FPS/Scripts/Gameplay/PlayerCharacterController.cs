@@ -318,14 +318,15 @@ namespace Unity.FPS.Gameplay
             if (m_InputHandler.GetAbilityInputDown() && abilityMeter == 100 && !parkour)
             {
                 abilityMeter = 0;
+                Debug.Log(character);
                 if (character == 0)
                 {
                     Ability0();
-                    AudioSource.PlayOneShot(teleportSfx);
-                    Debug.Log("hi");
+                    AudioSource.PlayOneShot(sheildSfx);
+                    Debug.Log("hi 0");
                 }
                 if (character == 1)
-                {
+                {// lopa
                    Ability1();
                    AudioSource.PlayOneShot(sheildSfx);
                 }
@@ -333,7 +334,7 @@ namespace Unity.FPS.Gameplay
                 {
                     Ability2();
                     AudioSource.PlayOneShot(teleportSfx);
-                    Debug.Log("hi");
+                    Debug.Log("hi 2");
                 }
                 // print("Done ability");
             }
