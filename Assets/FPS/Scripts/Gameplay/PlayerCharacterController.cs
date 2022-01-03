@@ -36,7 +36,7 @@ namespace Unity.FPS.Gameplay
         public float GroundCheckDistance = 0.05f;
 
         [Header("Movement")] [Tooltip("Max movement speed when grounded (when not sprinting)")]
-        public float MaxSpeedOnGround = 10f;
+        public float MaxSpeedOnGround = 7f;
 
         [Tooltip(
             "Sharpness for the movement when grounded, a low value will make the player accelerate and decelerate slowly, a high value will do the opposite")]
@@ -89,6 +89,7 @@ namespace Unity.FPS.Gameplay
 
         public AudioClip sheildSfx;
         public AudioClip teleportSfx;
+        public AudioClip coreSfx;
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -183,6 +184,7 @@ namespace Unity.FPS.Gameplay
 
         void Start()
         {
+            MaxSpeedOnGround = 7f;
             //animator = FindGameObjectInChildWithTag(FindGameObjectInChildWithTag(gameObject, "Main Camera"), "Character").GetComponent<Animator>();
 
             // fetch components on the same gameObject
@@ -323,7 +325,6 @@ namespace Unity.FPS.Gameplay
                 {
                     Ability0();
                     AudioSource.PlayOneShot(sheildSfx);
-                    Debug.Log("hi 0");
                 }
                 if (character == 1)
                 {// lopa
@@ -333,8 +334,7 @@ namespace Unity.FPS.Gameplay
                 if (character == 2)
                 {
                     Ability2();
-                    AudioSource.PlayOneShot(teleportSfx);
-                    Debug.Log("hi 2");
+                    AudioSource.PlayOneShot(coreSfx);
                 }
                 // print("Done ability");
             }
@@ -551,7 +551,7 @@ namespace Unity.FPS.Gameplay
                     isSprinting = SetCrouchingState(false, false);
                 }
 
-                float speedModifier = isSprinting ? SprintSpeedModifier : 1f;
+                float speedModifier = isSprinting ? (character ==0)?SprintSpeedModifier*2: SprintSpeedModifier : 1f;
 
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(m_InputHandler.GetMoveInput());

@@ -128,10 +128,14 @@ namespace Unity.FPS.Gameplay
                     }*/
                     /* else
                      {*/
-                    if (playerWeaponsManager.SecondaryAmmo <= 3)
+                    if (playerWeaponsManager.SecondaryAmmo <= 6)
                     {
+
+                        if(playerWeaponsManager.SecondaryAmmo <= 3 || PlayerCharacterController.character==0){
+
+
                         playerWeaponsManager.addSecondary(BulletCount);
-                        Destroy(gameObject);
+                        Destroy(gameObject);}
                     }
                     //}
                 }

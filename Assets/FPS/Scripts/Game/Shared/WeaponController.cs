@@ -13,6 +13,9 @@ namespace Unity.FPS.Game
         Charge,
     }
 
+
+
+
     [System.Serializable]
     public struct CrosshairData
     {
@@ -215,7 +218,7 @@ namespace Unity.FPS.Game
 
         void PlaySFX(AudioClip sfx) => AudioUtility.CreateSFX(sfx, transform.position, AudioUtility.AudioGroups.WeaponShoot, 0.0f);
 
-
+        bool khalas=true;
        public int Reload()
         {
             IsReloading = true;
@@ -250,6 +253,10 @@ namespace Unity.FPS.Game
 
         void Update()
         {
+            if(PlayerCharacterController.character==0&&khalas){
+                MaxAmmo=MaxAmmo*2;
+                khalas=false;
+            }
             UpdateAmmo();
             UpdateCharge();
             UpdateContinuousShootSound();
