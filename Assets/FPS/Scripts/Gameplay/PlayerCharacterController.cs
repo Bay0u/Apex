@@ -88,6 +88,7 @@ namespace Unity.FPS.Gameplay
         public AudioClip FootstepSfx;
 
         public AudioClip sheildSfx;
+        public AudioClip teleportSfx;
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -320,7 +321,8 @@ namespace Unity.FPS.Gameplay
                 if (character == 0)
                 {
                     Ability0();
-                    AudioSource.PlayOneShot(sheildSfx);
+                    AudioSource.PlayOneShot(teleportSfx);
+                    Debug.Log("hi");
                 }
                 if (character == 1)
                 {
@@ -330,6 +332,8 @@ namespace Unity.FPS.Gameplay
                 if (character == 2)
                 {
                     Ability2();
+                    AudioSource.PlayOneShot(teleportSfx);
+                    Debug.Log("hi");
                 }
                 // print("Done ability");
             }

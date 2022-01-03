@@ -120,7 +120,6 @@ namespace Unity.FPS.UI
                 AudioUtility.SetMasterVolume(-80.0f);
                 EventSystem.current.SetSelectedGameObject(null);
                 float valueInDb = Mathf.Log10(1) * 20;
-                AudioMixer.SetFloat("Master", 20);
                 AudioSource.PlayOneShot(MainMenuSound);
             }
             else
@@ -130,7 +129,6 @@ namespace Unity.FPS.UI
                 Time.timeScale = 1f;
                 AudioUtility.SetMasterVolume(1);
                 float valueInDb = Mathf.Log10(-80.0f) * 20;
-                AudioMixer.SetFloat("Master", -80.0f);
                 AudioSource.Pause();
             }
 
