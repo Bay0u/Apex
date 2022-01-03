@@ -26,6 +26,7 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Audio source for footsteps, jump, etc...")]
         public AudioSource AudioSource;
         public AudioSource AudioSourced;
+        public AudioSource AudioSourcew;
         public static bool isAbility1;
         [Header("General")] [Tooltip("Force applied downward when in the air")]
         public float GravityDownForce = 20f;
@@ -92,6 +93,7 @@ namespace Unity.FPS.Gameplay
         public AudioClip teleportSfx;
         public AudioClip coreSfx;
         public AudioClip Diesfx;
+        public AudioClip winSfx;
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -246,7 +248,8 @@ namespace Unity.FPS.Gameplay
             if (Game.Objective.IsCompleted && !parkour)
             {
                 parkour = true;
-                Debug.Log("hi bros");
+                //Debug.Log("hi bros");
+                AudioSourcew.PlayOneShot(winSfx);
                 WeaponController activeWeapon = m_WeaponsManager.GetActiveWeapon();
                 if (activeWeapon && activeWeapon.WeaponName.Equals("Sniper"))
                 {

@@ -137,9 +137,15 @@ namespace Unity.FPS.Gameplay
             // shoot handling
             WeaponController activeWeapon = GetActiveWeapon();
 
+
+
             if (activeWeapon != null && activeWeapon.IsReloading)
                 return;
 
+            if(activeWeapon!=null && PlayerCharacterController.character == 0 && activeWeapon.tag == "Secondary_Weapon")
+            {
+                activeWeapon.MaxAmmo = 10;
+            }
             if (activeWeapon != null && m_WeaponSwitchState == WeaponSwitchState.Up)
             {
                 if (!activeWeapon.AutomaticReload && m_InputHandler.GetReloadButtonDown() && activeWeapon.CurrentAmmoRatio < 1.0f)
