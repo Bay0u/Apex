@@ -87,6 +87,8 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Sound played for footsteps")]
         public AudioClip FootstepSfx;
 
+        public AudioClip sheildSfx;
+
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
 
@@ -318,10 +320,12 @@ namespace Unity.FPS.Gameplay
                 if (character == 0)
                 {
                     Ability0();
+                    AudioSource.PlayOneShot(sheildSfx);
                 }
                 if (character == 1)
                 {
                    Ability1();
+                   AudioSource.PlayOneShot(sheildSfx);
                 }
                 if (character == 2)
                 {
