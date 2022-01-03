@@ -25,6 +25,7 @@ namespace Unity.FPS.Gameplay
         public GameObject shield;
         [Tooltip("Audio source for footsteps, jump, etc...")]
         public AudioSource AudioSource;
+        public AudioSource AudioSourced;
         public static bool isAbility1;
         [Header("General")] [Tooltip("Force applied downward when in the air")]
         public float GravityDownForce = 20f;
@@ -90,6 +91,7 @@ namespace Unity.FPS.Gameplay
         public AudioClip sheildSfx;
         public AudioClip teleportSfx;
         public AudioClip coreSfx;
+        public AudioClip Diesfx;
 
         [Tooltip("Sound played when jumping")] public AudioClip JumpSfx;
         [Tooltip("Sound played when landing")] public AudioClip LandSfx;
@@ -464,6 +466,7 @@ namespace Unity.FPS.Gameplay
 
         void OnDie()
         {
+            AudioSourced.PlayOneShot(Diesfx);
             PlayerCamera.enabled = false;
             transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
             PlayerCamera.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
@@ -473,7 +476,7 @@ namespace Unity.FPS.Gameplay
 
             // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
             m_WeaponsManager.SwitchToWeaponIndex(-1, true);
-
+           
             EventManager.Broadcast(Events.PlayerDeathEvent);
         }
 
