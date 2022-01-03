@@ -10,6 +10,8 @@ public class handleRegion : MonoBehaviour
     public TextMeshProUGUI text;
     public TextMeshProUGUI PAMMOtext;
     public TextMeshProUGUI SAMMOtext;
+    public AudioSource AudioSource;
+    public AudioClip outsidesfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +28,12 @@ public class handleRegion : MonoBehaviour
     public void goInside()
     {
         text.text = "Inside the region";
+        AudioSource.PlayOneShot(outsidesfx);
     }
     public void goOutside()
     {
         text.text = "Outside the region";
+        AudioSource.PlayOneShot(outsidesfx);
     }
     public void setPAMMO()
     {
