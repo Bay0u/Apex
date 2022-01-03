@@ -1,3 +1,4 @@
+using Unity.FPS.Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,13 @@ namespace Unity.FPS.Game
         void Update()
         {
 
+        }
+        public void StartParkour()
+        {
+            PlayerCharacterController.parkour = true;
+            Game.Objective.IsCompleted = true;
+            SceneManager.LoadScene("parkour");
+            Time.timeScale = 1f;
         }
         public void StartMainScene()
         {
