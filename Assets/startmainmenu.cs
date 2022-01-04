@@ -28,6 +28,14 @@ namespace Unity.FPS.Game
         {
             SceneManager.LoadScene("Demo");
             Time.timeScale = 1f;
+            if (GetComponent<PlayerCharacterController>() != null && GetComponent<PlayerCharacterController>().PlayerCamera != null)
+            {
+                GetComponent<PlayerCharacterController>().PlayerCamera.enabled = true;
+            }
+            PlayerCharacterController.parkour = false;
+            PlayerCharacterController.IsDead = false;
+            Game.Objective.IsCompleted = false;
         }
+
     }
 }

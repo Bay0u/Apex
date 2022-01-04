@@ -122,7 +122,7 @@ namespace Unity.FPS.Gameplay
         public Vector3 CharacterVelocity { get; set; }
         public bool IsGrounded { get; private set; }
         public bool HasJumpedThisFrame { get; private set; }
-        public static bool IsDead { get; private set; }
+        public static bool IsDead { get;  set; }
         public bool IsCrouching { get; private set; }
         
         public float RotationMultiplier

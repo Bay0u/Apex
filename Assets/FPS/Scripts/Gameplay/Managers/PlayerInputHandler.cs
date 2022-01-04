@@ -35,7 +35,7 @@ namespace Unity.FPS.Gameplay
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
+        
         void LateUpdate()
         {
             m_FireInputWasHeld = GetFireInputHeld();
